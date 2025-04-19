@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shakti Portal - Women Empowerment Resources</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Custom styles */
+      .scheme-card {
+        transition: all 0.3s ease;
+      }
+      .scheme-card:hover {
+        transform: translateY(-5px);
+      }
+      .active-tab {
+        border-bottom: 3px solid #8b5cf6;
+        color: #8b5cf6;
+      }
+      body {
+        background-color: #111827;
+        color: #e5e7eb;
+      }
+    </style>
+  </head>
+  <body class="font-sans">
+    <!-- Navigation -->
+    <nav
+      class="bg-gray-900 text-white shadow-lg sticky top-0 z-50 border-b border-gray-800"
+    >
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <a href="#" class="text-2xl font-bold flex items-center">
+          <i class="fas fa-female mr-2 text-purple-400"></i> Shakti Portal
+        </a>
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="#schemes" class="hover:text-purple-300 nav-link active-tab"
+            >Schemes</a
+          >
+          <a href="#scholarships" class="hover:text-purple-300 nav-link"
+            >Scholarships</a
+          >
+          <a href="#jobs" class="hover:text-purple-300 nav-link">Jobs</a>
+          <a href="#programs" class="hover:text-purple-300 nav-link"
+            >Programs</a
+          >
+        </div>
+        <button id="mobile-menu-button" class="md:hidden text-xl">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-gray-800 px-4 pb-4 border-t border-gray-700"
+      >
+        <a
+          href="#schemes"
+          class="block py-2 hover:text-purple-300 nav-link-mobile active-tab"
+          >Schemes</a
+        >
+        <a
+          href="#scholarships"
+          class="block py-2 hover:text-purple-300 nav-link-mobile"
+          >Scholarships</a
+        >
+        <a href="#jobs" class="block py-2 hover:text-purple-300 nav-link-mobile"
+          >Jobs</a
+        >
+        <a
+          href="#programs"
+          class="block py-2 hover:text-purple-300 nav-link-mobile"
+          >Programs</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="bg-gradient-to-r from-gray-900 to-purple-900 text-white py-20 border-b border-gray-800"
+    >
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Empowering Women Across India
+        </h1>
+        <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-300">
+          Access government schemes, scholarships, job opportunities and skill
+          development programs
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="#schemes"
+            class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition"
+            >Explore Schemes</a
+          >
+          <a
+            href="#scholarships"
+            class="bg-transparent border-2 border-purple-400 px-6 py-3 rounded-lg font-semibold hover:bg-purple-900 hover:border-purple-300 transition"
+            >Find Scholarships</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+      <!-- Schemes Section -->
+      <section id="schemes" class="mb-20">
+        <h2 class="text-3xl font-bold mb-8 text-center text-purple-300">
+          Government Schemes for Women
+        </h2>
+
+        <!-- Filters -->
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-700"
+        >
+          <div class="grid md:grid-cols-3 gap-6">
+            <div>
+              <label
+                for="category-filter"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                >Category</label
+              >
+              <select
+                id="category-filter"
+                class="w-full p-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300"
+              >
+                <option value="all">All Categories</option>
+                <option value="education">Education</option>
+                <option value="business">Business/Startup</option>
+                <option value="health">Health & Nutrition</option>
+                <option value="rural">Rural Development</option>
+              </select>
+            </div>
+            <div>
+              <label
+                for="state-filter"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                >State</label
+              >
+              <select
+                id="state-filter"
+                class="w-full p-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300"
+              >
+                <option value="all">All States</option>
+                <option value="up">Uttar Pradesh</option>
+                <option value="mh">Maharashtra</option>
+                <option value="br">Bihar</option>
+                <option value="wb">West Bengal</option>
+              </select>
+            </div>
+            <div>
+              <label
+                for="search-schemes"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                >Search</label
+              >
+              <input
+                type="text"
+                id="search-schemes"
+                placeholder="Search schemes..."
+                class="w-full p-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Schemes Grid -->
+        <div
+          class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          id="schemes-container"
+        >
+          <!-- Schemes will be loaded here by JavaScript -->
+        </div>
+      </section>
+
+      <!-- Scholarships Section -->
+      <section id="scholarships" class="mb-20 py-8 border-t border-gray-700">
+        <h2 class="text-3xl font-bold mb-8 text-center text-purple-300">
+          Scholarships for Girls
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-6" id="scholarships-container">
+          <!-- Scholarships will be loaded here by JavaScript -->
+        </div>
+      </section>
+
+      <!-- Jobs Section -->
+      <!-- Update your jobs section in index.html -->
+      <!-- <section id="jobs" class="mb-20 py-8 border-t border-gray-700">
+        <h2 class="text-3xl font-bold mb-8 text-center text-purple-300">
+          Job Opportunities
+        </h2>
+
+        <div
+          class="bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-700"
+        >
+          <div class="grid md:grid-cols-3 gap-6">
+            <div>
+              <label
+                for="job-type-filter"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                >Job Type</label
+              >
+              <select
+                id="job-type-filter"
+                class="w-full p-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300"
+              >
+                <option value="all">All Types</option>
+                <option value="fulltime">Full-time</option>
+                <option value="parttime">Part-time</option>
+                <option value="contract">Contract</option>
+                <option value="internship">Internship</option>
+                <option value="temporary">Temporary</option>
+              </select>
+            </div>
+            <div>
+              <label
+                for="job-location"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                >Location</label
+              >
+              <input
+                type="text"
+                id="job-location"
+                placeholder="City or ZIP code"
+                class="w-full p-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300"
+              />
+            </div>
+            <div>
+              <label
+                for="search-jobs"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                >Keywords</label
+              >
+              <div class="flex">
+                <input
+                  type="text"
+                  id="search-jobs"
+                  placeholder="Job title or keywords"
+                  class="w-full p-2 border border-gray-700 rounded-l-md bg-gray-900 text-gray-300"
+                />
+                <button
+                  id="search-jobs-btn"
+                  class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-r-md"
+                >
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4 flex justify-between items-center">
+          <h3 class="text-xl font-semibold text-purple-300">Job Listings</h3>
+          <div id="job-results-count" class="text-gray-400 text-sm">
+            0 jobs found
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6" id="jobs-container">
+          Jobs will be loaded here by JavaScript -->
+          <!-- <div class="text-center py-8 text-gray-400" id="jobs-loading">
+            <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+            <p>Loading job listings...</p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex justify-center">
+          <button
+            id="load-more-jobs"
+            class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-md border border-gray-700 hidden"
+          >
+            Load More Jobs
+          </button>
+        </div>
+      </section> -->
+
+      <div
+        id="job-search"
+        style="
+          max-width: 600px;
+          margin: 2rem auto;
+          padding: 1rem;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+        "
+      >
+        <h2>Job Search</h2>
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem">
+          <input
+            type="text"
+            id="location"
+            placeholder="Location (e.g. New York)"
+            style="flex: 1; padding: 0.5rem"
+          />
+          <input
+            type="text"
+            id="job-type"
+            placeholder="Job Title (e.g. Software Engineer)"
+            style="flex: 1; padding: 0.5rem"
+          />
+          <button id="search-btn" style="padding: 0.5rem 1rem">Search</button>
+        </div>
+        <div id="results"></div>
+      </div>
+
+      <script>
+        const options = {
+          method: "GET",
+          headers: {
+            "X-RapidAPI-Key":
+              "c2dd6fc439mshade2671c91b1235p188e69jsna4c3da0a4b3d",
+            "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
+          },
+        };
+
+        document
+          .getElementById("search-btn")
+          .addEventListener("click", async () => {
+            const location = document.getElementById("location").value.trim();
+            const jobType = document.getElementById("job-type").value.trim();
+            if (!location || !jobType) {
+              alert("Please enter both location and job title.");
+              return;
+            }
+
+            const url = `https://jsearch.p.rapidapi.com/search?query=${encodeURIComponent(
+              jobType
+            )}&location=${encodeURIComponent(location)}&num_pages=1`;
+
+            try {
+              const res = await fetch(url, options);
+              const json = await res.json();
+              const jobs = json.data || [];
+              const resultsDiv = document.getElementById("results");
+              resultsDiv.innerHTML = jobs.length
+                ? jobs
+                    .map(
+                      (job) => `
+            <div class="job-item" style="border-bottom:1px solid #eee;padding:0.75rem 0;">
+              <h3 style="margin:0 0 0.25rem;">${job.job_title}</h3>
+              <p style="margin:0 0 0.5rem;color:#555;">
+                ${job.company_name} — ${job.job_country || job.job_city || ""} 
+              </p>
+              <a href="${
+                job.job_apply_link || job.job_poster_url
+              }" target="_blank">View &amp; Apply</a>
+            </div>
+          `
+                    )
+                    .join("")
+                : "<p>No jobs found. Try different keywords or location.</p>";
+            } catch (err) {
+              console.error(err);
+              document.getElementById("results").innerHTML =
+                '<p style="color:red;">Error fetching jobs. Check console.</p>';
+            }
+          });
+      </script>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-purple-300">
+              Shakti Portal
+            </h3>
+            <p class="text-gray-400">
+              Empowering women through information and resources
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4 text-gray-300">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#schemes" class="hover:text-purple-300 text-gray-400"
+                  >Schemes</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#scholarships"
+                  class="hover:text-purple-300 text-gray-400"
+                  >Scholarships</a
+                >
+              </li>
+              <li>
+                <a href="#jobs" class="hover:text-purple-300 text-gray-400"
+                  >Jobs</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4 text-gray-300">Contact</h4>
+            <p class="text-gray-400">
+              <i class="fas fa-envelope mr-2 text-purple-300"></i>
+              info@shaktiportal.org
+            </p>
+            <p class="text-gray-400">
+              <i class="fas fa-phone mr-2 text-purple-300"></i> 1800-XXX-XXXX
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4 text-gray-300">Follow Us</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="text-2xl hover:text-purple-300 text-gray-400"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-2xl hover:text-purple-300 text-gray-400"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-2xl hover:text-purple-300 text-gray-400"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-2xl hover:text-purple-300 text-gray-400"
+                ><i class="fab fa-youtube"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2023 Shakti Portal. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/scr.js"></script>
+  </body>
+</html>

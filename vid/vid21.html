@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Content</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-800 text-white">
+
+    <div class="container mx-auto p-6">
+      <!-- Course Video with fallback thumbnail -->
+      <div class="relative pb-[56.25%] mb-6 bg-black">
+        <div id="player"></div>
+        <!-- Fallback thumbnail that disappears when player loads -->
+        <img id="fallbackThumbnail" 
+             src="https://img.youtube.com/vi/0hi1gcnkp9NyVQTF/maxresdefault.jpg" 
+             class="absolute inset-0 w-full h-full object-cover"
+             alt="Video Thumbnail">
+        <!-- Loading indicator -->
+        <div id="loadingState" class="absolute inset-0 flex items-center justify-center">
+          <p class="text-white"><i class="fas fa-spinner fa-spin mr-2"></i>Loading video...</p>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex items-center justify-between mb-6">
+        <button id="playPauseBtn" class="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-400">
+          <i class="fas fa-play"></i>
+        </button>
+        <div class="flex items-center space-x-2">
+          <button id="volumeBtn" class="p-2 text-white">
+            <i class="fas fa-volume-up"></i>
+          </button>
+          <input type="range" id="volumeControl" class="w-24" min="0" max="1" step="0.1" value="1">
+        </div>
+        <div class="w-full max-w-md">
+          <div class="h-2 bg-gray-700 rounded-full">
+            <div id="progressBar" class="h-full bg-blue-500 rounded-full" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course Info -->
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold mb-4">Course Title</h2>
+        <p class="text-gray-400">Course description goes here.</p>
+      </div>
+
+      <!-- Enrollment -->
+      <button id="enrollBtn" class="w-full py-3 px-6 bg-blue-500 text-white rounded-lg hover:bg-blue-400">Enroll Now</button>
+
+      <!-- Modules (Table of Contents) -->
+      <div class="mt-6">
+        <h3 class="text-xl font-semibold mb-4">Course Modules</h3>
+        <div id="modulesList" class="space-y-4">
+          <!-- Modules will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+    // Load YouTube API script dynamically
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let player;
+    let isPlaying = false;
+    let videoDuration = 0;
+    let enrolled = false;
+
+    // This function gets called when YouTube API is ready
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '100%',
+        width: '100%',
+        videoId: 'RIXxt21mohQ', // Replace with actual video ID
+        playerVars: {
+          'autoplay': 0,
+          'controls': 0,
+          'rel': 0,
+          'showinfo': 0
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      videoDuration = player.getDuration();
+      updateModules();
+      // Hide loading state and fallback thumbnail when player is ready
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('fallbackThumbnail').style.display = 'none';
+    }
+
+    function onPlayerStateChange(event) {
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      
+      if (event.data === YT.PlayerState.PLAYING) {
+        isPlaying = true;
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      } else {
+        isPlaying = false;
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    }
+
+    // Play/Pause toggle
+    document.getElementById('playPauseBtn').addEventListener('click', () => {
+      if (isPlaying) {
+        player.pauseVideo();
+      } else {
+        player.playVideo();
+      }
+    });
+
+    // Volume control
+    document.getElementById('volumeControl').addEventListener('input', (e) => {
+      player.setVolume(e.target.value * 100);
+      
+      // Update volume icon based on volume level
+      const volumeBtn = document.getElementById('volumeBtn');
+      if (e.target.value == 0) {
+        volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      } else if (e.target.value < 0.5) {
+        volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+      } else {
+        volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+      }
+    });
+
+    // Enroll button
+    document.getElementById('enrollBtn').addEventListener('click', () => {
+      if (!enrolled) {
+        enrolled = true;
+        alert('You are enrolled in the course!');
+        const btn = document.getElementById('enrollBtn');
+        btn.disabled = true;
+        btn.innerText = 'Enrolled';
+        btn.classList.remove('hover:bg-blue-400');
+      }
+    });
+
+    // Course Modules
+    let modules = [];
+
+    function updateModules() {
+  modules = [
+    { title: 'Start', timestamp: 0, duration: '0:00' },
+    { title: 'Middle', timestamp: (2 * 60) + 30, duration: '2:30' },
+    { title: 'End', timestamp: (4 * 60) + 45, duration: '4:45' }
+  ];
+  populateModules();
+}
+
+    function populateModules() {
+      const modulesList = document.getElementById('modulesList');
+      modulesList.innerHTML = '';
+      
+      modules.forEach((module) => {
+        const moduleElement = document.createElement('div');
+        moduleElement.className = 'p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition';
+        moduleElement.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-semibold">${module.title}</h4>
+              <p class="text-sm text-gray-400">${module.duration}</p>
+            </div>
+            <button class="bg-blue-500 hover:bg-blue-400 text-white py-1 px-3 rounded-full transition" 
+                    onclick="jumpToTimestamp(${module.timestamp})">
+              Go to ${module.title}
+            </button>
+          </div>
+        `;
+        modulesList.appendChild(moduleElement);
+      });
+    }
+
+    function jumpToTimestamp(timestamp) {
+      if (player && timestamp < videoDuration) {
+        player.seekTo(timestamp, true);
+        if (!isPlaying) {
+          player.playVideo();
+        }
+      }
+    }
+
+    // Update progress bar
+    setInterval(() => {
+      if (player && isPlaying) {
+        const currentTime = player.getCurrentTime();
+        const progress = (currentTime / videoDuration) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+      }
+    }, 1000);
+    </script>
+
+  </body>
+</html>

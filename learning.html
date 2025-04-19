@@ -20,48 +20,127 @@
       const { useState } = React;
       
       const courses = {
-        digital: [
-          {
-            id: 1,
+        All:[
+
+        {
+            id: 21,
             title: "Smartphone Mastery",
-            description: "Learn essential smartphone operations, apps, and online safety.",
+            description:
+              "Learn essential smartphone operations, apps, and online safety.",
             duration: "4 weeks",
-            students: 1200,
             rating: 4.8,
             youtubeId: "RIXxt21mohQ",
+            link: "vid21.html",
+          },
+          {
+            id: 22,
+            title: "A Song of Her Own",
+            description: "Silent no more, she led with music, not fear.",
+            duration: "3 weeks",
+            rating: 5.2,
+            youtubeId: "-iRW7BfsQvg",
+            link: "vid22.html",
+          },
+          {
+            id: 23,
+            title: "No Storm Could Drown Her",
+            description: "She lit the flame that outshone their doubt.",
+            duration: "3 weeks",
+            rating: 4.8,
+            youtubeId: "J6Xo2uCjhnA",
+            link: "vid23.html",
+          },
+          {
+            id: 24,
+            title: "When the Mountains Answered Her Call",
+            description: "They called her savage; she called them ghosts",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "Pe81UffDVWk",
+            link: "vid24.html",
+          },
+          {
+            id: 25,
+            title: "Social Makting",
+            description: "Sell smarter with social media & mobile tools!",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "sa4agpw6KFs",
+            link: "vid25.html",
+          },
+          {
+            id: 26,
+            title: "What is Digital Makting",
+            description: "Sell smarter with social media & mobile tools!",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "NbVbiFGhXg0",
+            link: "vid26.html",
+          },
+          {
+            id: 27,
+            title: "Google Forms",
+            description: "Creating google forms",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "Fq4cE6SKfyY",
+            link: "vid27.html",
+          },
+          {
+            id: 28,
+            title: "Cyber Security",
+            description: "Secure Your data ",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "VBejkJSsHZ0",
+            link: "vid28.html",
+          },
+          {
+            id: 29,
+            title: "Browser",
+            description:"Explore new things",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "KqycWogup0U",
+            link: "vid29.html",
+          },
+
+          {
+            id: 1,
+            title: " what is lifeskills ",
+            description: "Essential skills every girl needs to succeed in life!",
+            duration: "4 weeks",
+            rating: 4.9,
+            youtubeId: "sids6PjkC1I",
             link: "vid1.html"
           },
           {
             id: 2,
-            title: "Financial Basics",
-            description: "Master budgeting and saving skills.",
-            duration: "3 weeks",
-            students: 950,
-            rating: 4.6,
-            youtubeId: "-iRW7BfsQvg",
+            title: " Communication Skills",
+            description: "Speak with confidence—express yourself clearly and boldly!",
+            duration: "4 weeks",     
+            rating: 5.0,
+            youtubeId: "pJ7RgUCEd5M",
             link: "vid2.html"
           },
           {
             id: 3,
-            title: "Financial Basics",
-            description: "Master budgeting and saving skills.",
-            duration: "3 weeks",
-            students: 950,
-            rating: 4.6,
-            youtubeId: "J6Xo2uCjhnA",
+            title: "Smart thinking—solve problems like a pro!",
+            description: "Stay clean, stay safe—simple habits for health.",
+            duration: "4 weeks", 
+            rating: 5.2,
+            youtubeId: "dItUGF8GdTw",
             link: "vid3.html"
           },
           {
             id: 4,
-            title: "Financial Basics",
-            description: "Master budgeting and saving skills.",
-            duration: "3 weeks",
-            students: 950,
-            rating: 4.6,
-            youtubeId: "Pe81UffDVWk",
+            title: "Self-Confidence & Self-Awareness",
+            description: "Believe in yourself—know your worth and shine!",
+            duration: "4 weeks",          
+            rating: 6.0,
+            youtubeId: "20hYOeGC7qc",
             link: "vid4.html"
           },
-
           {
             id: 5,
             title: "Decision Making & Goal Setting",
@@ -77,7 +156,7 @@
             description: "Stay strong—handle stress and emotions wisely!", 
             duration: "4 weeks", 
             rating: 7.0,
-            youtubeId: "",
+            youtubeId: "2JuLXQ8w_9A",
             link: "vid6.html"
           },
           {
@@ -115,18 +194,747 @@
             rating: 8.8,
             youtubeId: "AmTbx_8SMMw",
             link: "vid10.html"
+          },
+          
+          {
+            id: 11,
+            title: "Understanding Money",
+            description: "Learn what money truly means and its power for women.",
+            duration: "4 weeks",
+            rating: 4.9,
+            youtubeId: "DNYCgsyOAW4",
+            link: "vid11.html"
+          },
+          {
+            id: 12,
+            title: "Saving Basics",
+            description: "Start small, save smart—secure your future with confidence.",
+            duration: "4 weeks",     
+            rating: 5.0,
+            youtubeId: "Z1bU3dE7Rdc",
+            link: "vid12.html"
+          },
+          {
+            id: 13,
+            title: "Budgeting for Beginners ",
+            description: "Control your finances, achieve dreams with smart budgeting.",
+            duration: "4 weeks", 
+            rating: 5.2,
+            youtubeId: "-vVp185Sq24",
+            link: "vid13.html"
+          },
+          {
+            id: 14,
+            title: "Banking Made Easy",
+            description: "Demystify banks—manage accounts, cards, and transactions effortlessly.",
+            duration: "4 weeks",          
+            rating: 6.0,
+            youtubeId: "fTTGALaRZoc",
+            link: "vid14.html"
+          },
+          {
+            id: 15,
+            title: "Digital Payments & UPI",
+            description: "Go cashless, pay safely, and embrace digital freedom.",
+            duration: "4 weeks",            
+            rating: 6.2,
+            youtubeId: "iI2NaN_QVTI",
+            link: "vid15.html"
+          },
+          {
+            id: 16,
+            title: "Loans & Borrowing",
+            description: "Borrow wisely—know loans, interest, and debt risks.", 
+            duration: "4 weeks", 
+            rating: 7.0,
+            youtubeId: "fuiiJuB7tJs",
+            link: "vid16.html"
+          },
+          {
+            id: 17,
+            title: "Earning with Small Skills",
+            description: "Turn talents into income—side hustles for financial independence.",
+            duration: "4 weeks",
+            rating: 7.5,
+            youtubeId: "iOGmsUZwPCE",
+            link: "vid17.html"
+          },
+          {
+            id: 18,
+            title: "Financial Rights & Safety",
+            description: "Protect your money—fraud prevention and legal rights.",
+            duration: "4 weeks",
+            rating: 8.0,
+            youtubeId: "n6gDwiq5dHc",
+            link: "vid18.html"
+          },
+          {
+            id: 19,
+            title: "Investing Small, Growing Smart ",
+            description: "Start investing early, build wealth with small steps.",
+            duration: "4 weeks",          
+            rating: 8.5,
+            youtubeId: "tHxwyWnNu0c",
+            link: "vid19.html"
+          },
+          {
+            id: 20,
+            title: "Role Models & Success Stories",
+            description: "Be inspired—real women who conquered financial challenges.",
+            duration: "4 weeks",
+            rating: 8.8,
+            youtubeId: "EdpoEmifW7M",
+            link: "vid20.html"
+          },
+
+          {
+            id: 30,
+            title: "What Is Entrepreneurship?",
+            description: "Discover how women can turn ideas into thriving businesses.",
+            duration: "4 weeks",
+            rating: 4.9,
+            youtubeId: "Xcsp0486olY",
+            link: "vid30.html"
+          },
+          {
+            id: 31,
+            title: "Finding a Business Idea",
+            description: "Spot opportunities around you—your perfect business starts here!",
+            duration: "4 weeks",     
+            rating: 5.0,
+            youtubeId: "cIsA1s9SwEU",
+            link: "vid31.html"
+          },
+          {
+            id: 32,
+            title: " Planning Your Business",
+            description: "Turn dreams into action—learn to build a solid plan.",
+            duration: "4 weeks", 
+            rating: 5.2,
+            youtubeId: "bXLZ8I7s8tw",
+            link: "vid32.html"
+          },
+          {
+            id: 33,
+            title: " Money Management for Entrepreneurs",
+            description: "Smart money habits to keep your business running smoothly.",
+            duration: "4 weeks",          
+            rating: 6.0,
+            youtubeId: "MLIG1VVB8vE",
+            link: "vid33.html"
+          },
+          {
+            id: 34,
+            title: "Marketing Made Simple",
+            description: "Attract customers easily—no fancy budget needed!",
+            duration: "4 weeks",            
+            rating: 6.2,
+            youtubeId: "jpLOPrB076M",
+            link: "vid34.html"
+          },
+          {
+            id: 35,
+            title: "Talking to Customers",
+            description: "Master communication—turn strangers into loyal buyers.", 
+            duration: "4 weeks", 
+            rating: 7.0,
+            youtubeId: "afp9hr4ltH0",
+            link: "vid35.html"
+          },
+          {
+            id: 36,
+            title: " Using Help from SHGs, NGOs & Govt Schemes",
+            description: "Free support exists! Learn how to access resources.",
+            duration: "4 weeks",
+            rating: 7.5,
+            youtubeId: "IzotW5RQ6eg",
+            link: "vid36.html"
+          },
+          {
+            id: 37,
+            title: "Growing and Scaling Up",
+            description: "Take your business bigger—strategies for long-term success.",
+            duration: "4 weeks",
+            rating: 8.0,
+            youtubeId: "XQEgnqEWQqE",
+            link: "vid37.html"
+          },
+          {
+            id: 38,
+            title: " Facing Challenges & Staying Strong",
+            description: "Overcome setbacks like a boss—resilience is key!",
+            duration: "4 weeks",          
+            rating: 8.5,
+            youtubeId: "hUA_k76x2uE",
+            link: "vid38.html"
+          },
+          {
+            id: 39,
+            title: "Success Stories & Inspiration",
+            description: "Real women, real wins—let their journeys motivate you!",
+            duration: "4 weeks",
+            rating: 8.8,
+            youtubeId: "7TWKKww-F30",
+            link: "vid39.html"
+          },
+
+          {
+            id: 40,
+            title: " Introduction to Health & Wellness",
+            description: "Start your journey to a healthier, happier life.",
+            duration: "4 weeks",
+            rating: 4.9,
+            youtubeId: "wPAXBs38JkE",
+            link: "vid40.html"
+          },
+          {
+            id: 41,
+            title: "Nutrition Basics",
+            description: "Eat right, feel strong—fuel your body wisely.",
+            duration: "4 weeks",     
+            rating: 5.0,
+            youtubeId: "inEPlZZ_SfA",
+            link: "vid41.html"
+          },
+          {
+            id: 42,
+            title: "Hygiene and Sanitation",
+            description: "Stay clean, stay safe—simple habits for health.",
+            duration: "4 weeks", 
+            rating: 5.2,
+            youtubeId: "Ddn1W3Rp-Fk",
+            link: "vid42.html"
+          },
+          {
+            id: 43,
+            title: "Menstrual Health",
+            description: "Break taboos, embrace knowledge—periods with confidence.",
+            duration: "4 weeks",          
+            rating: 6.0,
+            youtubeId: "3Lt9I5LrWZw",
+            link: "vid43.html"
+          },
+          {
+            id: 44,
+            title: "Rest, Sleep & Mental Wellness",
+            description: "Sleep well, stress less—mind and body care.",
+            duration: "4 weeks",            
+            rating: 6.2,
+            youtubeId: "3h_AwmM6SxA",
+            link: "vid44.html"
+          },
+          {
+            id: 45,
+            title: "Exercise & Movement",
+            description: "Move daily, stay active—fitness for all ages.", 
+            duration: "4 weeks", 
+            rating: 7.0,
+            youtubeId: "i7LJ-39bFgE",
+            link: "vid45.html"
+          },
+          {
+            id: 46,
+            title: " Preventive Health Care",
+            description: "Stop sickness early—regular check-ups save lives.",
+            duration: "4 weeks",
+            rating: 7.5,
+            youtubeId: "J2eqPQzkW6o",
+            link: "vid46.html"
+          },
+          {
+            id: 47,
+            title: "Saying No to Bad Habits",
+            description: "Quit harmful habits, choose a better future.",
+            duration: "4 weeks",
+            rating: 8.0,
+            youtubeId: "CqgmozFr_GM",
+            link: "vid47.html"
+          },
+          {
+            id: 48,
+            title: " Self-esteem & Body Positivity",
+            description: "Love yourself—confidence starts from within",
+            duration: "4 weeks",          
+            rating: 8.5,
+            youtubeId: "qKfdHzSr-eI",
+            link: "vid48.html"
+          },
+          {
+            id: 49,
+            title: "When and How to Seek Help",
+            description: "Ask for support—health is your right.",
+            duration: "4 weeks",
+            rating: 8.8,
+            youtubeId: "vF2Z4T97xcQ",
+            link: "vid49.html"
           }
+
+        ],
+        digital: [
+          {
+            id: 21,
+            title: "Smartphone Mastery",
+            description:
+              "Learn essential smartphone operations, apps, and online safety.",
+            duration: "4 weeks",
+            rating: 4.8,
+            youtubeId: "RIXxt21mohQ",
+            link: "vid21.html",
+          },
+          {
+            id: 22,
+            title: "A Song of Her Own",
+            description: "Silent no more, she led with music, not fear.",
+            duration: "3 weeks",
+            rating: 5.2,
+            youtubeId: "-iRW7BfsQvg",
+            link: "vid22.html",
+          },
+          {
+            id: 23,
+            title: "No Storm Could Drown Her",
+            description: "She lit the flame that outshone their doubt.",
+            duration: "3 weeks",
+            rating: 4.8,
+            youtubeId: "J6Xo2uCjhnA",
+            link: "vid23.html",
+          },
+          {
+            id: 24,
+            title: "When the Mountains Answered Her Call",
+            description: "They called her savage; she called them ghosts",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "Pe81UffDVWk",
+            link: "vid24.html",
+          },
+          {
+            id: 25,
+            title: "Social Makting",
+            description: "Sell smarter with social media & mobile tools!",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "sa4agpw6KFs",
+            link: "vid25.html",
+          },
+          {
+            id: 26,
+            title: "What is Digital Makting",
+            description: "Sell smarter with social media & mobile tools!",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "NbVbiFGhXg0",
+            link: "vid26.html",
+          },
+          {
+            id: 27,
+            title: "Google Forms",
+            description: "Creating google forms",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "Fq4cE6SKfyY",
+            link: "vid27.html",
+          },
+          {
+            id: 28,
+            title: "Cyber Security",
+            description: "Secure Your data ",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "VBejkJSsHZ0",
+            link: "vid28.html",
+          },
+          {
+            id: 29,
+            title: "Browser",
+            description:"Explore new things",
+            duration: "3 weeks",
+            rating: 4.6,
+            youtubeId: "KqycWogup0U",
+            link: "vid29.html",
+          }
+        ],
+        lifeskills: [
+        {
+            id: 1,
+            title: " what is lifeskills ",
+            description: "Essential skills every girl needs to succeed in life!",
+            duration: "4 weeks",
+            rating: 4.9,
+            youtubeId: "sids6PjkC1I",
+            link: "vid1.html"
+          },
+          {
+            id: 2,
+            title: " Communication Skills",
+            description: "Speak with confidence—express yourself clearly and boldly!",
+            duration: "4 weeks",     
+            rating: 5.0,
+            youtubeId: "pJ7RgUCEd5M",
+            link: "vid2.html"
+          },
+          {
+            id: 3,
+            title: "Smart thinking—solve problems like a pro!",
+            description: "Stay clean, stay safe—simple habits for health.",
+            duration: "4 weeks", 
+            rating: 5.2,
+            youtubeId: "dItUGF8GdTw",
+            link: "vid3.html"
+          },
+          {
+            id: 4,
+            title: "Self-Confidence & Self-Awareness",
+            description: "Believe in yourself—know your worth and shine!",
+            duration: "4 weeks",          
+            rating: 6.0,
+            youtubeId: "20hYOeGC7qc",
+            link: "vid4.html"
+          },
+          {
+            id: 5,
+            title: "Decision Making & Goal Setting",
+            description: "Make wise choices—plan your future with purpose!",
+            duration: "4 weeks",            
+            rating: 6.2,
+            youtubeId: "L4N1q4RNi9I",
+            link: "vid5.html"
+          },
+          {
+            id: 6,
+            title: "Managing Emotions & Stress",
+            description: "Stay strong—handle stress and emotions wisely!", 
+            duration: "4 weeks", 
+            rating: 7.0,
+            youtubeId: "2JuLXQ8w_9A",
+            link: "vid6.html"
+          },
+          {
+            id: 7,
+            title: "Teamwork & Leadership",
+            description: "Lead with courage—work together for success!",
+            duration: "4 weeks",
+            rating: 7.5,
+            youtubeId: "eXDNkwIeOqA",
+            link: "vid7.html"
+          },
+          {
+            id: 8,
+            title: "Saying No – Refusal & Safety Skills",
+            description: "Set boundaries—stay safe and say NO with power!",
+            duration: "4 weeks",
+            rating: 8.0,
+            youtubeId: "FtPRrn5nwAo",
+            link: "vid8.html"
+          },
+          {
+            id: 9,
+            title: "Time Management & Responsibility",
+            description: "Use time well—balance work and life smartly!",
+            duration: "4 weeks",          
+            rating: 8.5,
+            youtubeId: "31LZeMC5l3o",
+            link: "vid9.html"
+          },
+          {
+            id: 10,
+            title: "Hope, Dreams & Vision for the Future",
+            description: "Dream big—create a future full of possibilities!",
+            duration: "4 weeks",
+            rating: 8.8,
+            youtubeId: "AmTbx_8SMMw",
+            link: "vid10.html"
+          },
           // Add more courses with their respective links
+        ],
+        financial :[
+
+        {
+            id: 11,
+            title: "Understanding Money",
+            description: "Learn what money truly means and its power for women.",
+            duration: "4 weeks",
+            rating: 4.9,
+            youtubeId: "DNYCgsyOAW4",
+            link: "vid11.html"
+          },
+          {
+            id: 12,
+            title: "Saving Basics",
+            description: "Start small, save smart—secure your future with confidence.",
+            duration: "4 weeks",     
+            rating: 5.0,
+            youtubeId: "Z1bU3dE7Rdc",
+            link: "vid12.html"
+          },
+          {
+            id: 13,
+            title: "Budgeting for Beginners ",
+            description: "Control your finances, achieve dreams with smart budgeting.",
+            duration: "4 weeks", 
+            rating: 5.2,
+            youtubeId: "-vVp185Sq24",
+            link: "vid13.html"
+          },
+          {
+            id: 14,
+            title: "Banking Made Easy",
+            description: "Demystify banks—manage accounts, cards, and transactions effortlessly.",
+            duration: "4 weeks",          
+            rating: 6.0,
+            youtubeId: "fTTGALaRZoc",
+            link: "vid14.html"
+          },
+          {
+            id: 15,
+            title: "Digital Payments & UPI",
+            description: "Go cashless, pay safely, and embrace digital freedom.",
+            duration: "4 weeks",            
+            rating: 6.2,
+            youtubeId: "iI2NaN_QVTI",
+            link: "vid15.html"
+          },
+          {
+            id: 16,
+            title: "Loans & Borrowing",
+            description: "Borrow wisely—know loans, interest, and debt risks.", 
+            duration: "4 weeks", 
+            rating: 7.0,
+            youtubeId: "fuiiJuB7tJs",
+            link: "vid16.html"
+          },
+          {
+            id: 17,
+            title: "Earning with Small Skills",
+            description: "Turn talents into income—side hustles for financial independence.",
+            duration: "4 weeks",
+            rating: 7.5,
+            youtubeId: "iOGmsUZwPCE",
+            link: "vid17.html"
+          },
+          {
+            id: 18,
+            title: "Financial Rights & Safety",
+            description: "Protect your money—fraud prevention and legal rights.",
+            duration: "4 weeks",
+            rating: 8.0,
+            youtubeId: "n6gDwiq5dHc",
+            link: "vid18.html"
+          },
+          {
+            id: 19,
+            title: "Investing Small, Growing Smart ",
+            description: "Start investing early, build wealth with small steps.",
+            duration: "4 weeks",          
+            rating: 8.5,
+            youtubeId: "tHxwyWnNu0c",
+            link: "vid19.html"
+          },
+          {
+            id: 20,
+            title: "Role Models & Success Stories",
+            description: "Be inspired—real women who conquered financial challenges.",
+            duration: "4 weeks",
+            rating: 8.8,
+            youtubeId: "EdpoEmifW7M",
+            link: "vid20.html"
+          }
+        ],
+        entrepreneurship:[
+        {
+            id: 30,
+            title: "What Is Entrepreneurship?",
+            description: "Discover how women can turn ideas into thriving businesses.",
+            duration: "4 weeks",
+            rating: 4.9,
+            youtubeId: "Xcsp0486olY",
+            link: "vid30.html"
+          },
+          {
+            id: 31,
+            title: "Finding a Business Idea",
+            description: "Spot opportunities around you—your perfect business starts here!",
+            duration: "4 weeks",     
+            rating: 5.0,
+            youtubeId: "cIsA1s9SwEU",
+            link: "vid31.html"
+          },
+          {
+            id: 32,
+            title: " Planning Your Business",
+            description: "Turn dreams into action—learn to build a solid plan.",
+            duration: "4 weeks", 
+            rating: 5.2,
+            youtubeId: "bXLZ8I7s8tw",
+            link: "vid32.html"
+          },
+          {
+            id: 33,
+            title: " Money Management for Entrepreneurs",
+            description: "Smart money habits to keep your business running smoothly.",
+            duration: "4 weeks",          
+            rating: 6.0,
+            youtubeId: "MLIG1VVB8vE",
+            link: "vid33.html"
+          },
+          {
+            id: 34,
+            title: "Marketing Made Simple",
+            description: "Attract customers easily—no fancy budget needed!",
+            duration: "4 weeks",            
+            rating: 6.2,
+            youtubeId: "jpLOPrB076M",
+            link: "vid34.html"
+          },
+          {
+            id: 35,
+            title: "Talking to Customers",
+            description: "Master communication—turn strangers into loyal buyers.", 
+            duration: "4 weeks", 
+            rating: 7.0,
+            youtubeId: "afp9hr4ltH0",
+            link: "vid35.html"
+          },
+          {
+            id: 36,
+            title: " Using Help from SHGs, NGOs & Govt Schemes",
+            description: "Free support exists! Learn how to access resources.",
+            duration: "4 weeks",
+            rating: 7.5,
+            youtubeId: "IzotW5RQ6eg",
+            link: "vid36.html"
+          },
+          {
+            id: 37,
+            title: "Growing and Scaling Up",
+            description: "Take your business bigger—strategies for long-term success.",
+            duration: "4 weeks",
+            rating: 8.0,
+            youtubeId: "XQEgnqEWQqE",
+            link: "vid37.html"
+          },
+          {
+            id: 38,
+            title: " Facing Challenges & Staying Strong",
+            description: "Overcome setbacks like a boss—resilience is key!",
+            duration: "4 weeks",          
+            rating: 8.5,
+            youtubeId: "hUA_k76x2uE",
+            link: "vid38.html"
+          },
+          {
+            id: 39,
+            title: "Success Stories & Inspiration",
+            description: "Real women, real wins—let their journeys motivate you!",
+            duration: "4 weeks",
+            rating: 8.8,
+            youtubeId: "7TWKKww-F30",
+            link: "vid39.html"
+          },
+        ],
+        health:[
+
+        {
+            id: 40,
+            title: " Introduction to Health & Wellness",
+            description: "Start your journey to a healthier, happier life.",
+            duration: "4 weeks",
+            rating: 4.9,
+            youtubeId: "wPAXBs38JkE",
+            link: "vid40.html"
+          },
+          {
+            id: 41,
+            title: "Nutrition Basics",
+            description: "Eat right, feel strong—fuel your body wisely.",
+            duration: "4 weeks",     
+            rating: 5.0,
+            youtubeId: "inEPlZZ_SfA",
+            link: "vid41.html"
+          },
+          {
+            id: 42,
+            title: "Hygiene and Sanitation",
+            description: "Stay clean, stay safe—simple habits for health.",
+            duration: "4 weeks", 
+            rating: 5.2,
+            youtubeId: "Ddn1W3Rp-Fk",
+            link: "vid42.html"
+          },
+          {
+            id: 43,
+            title: "Menstrual Health",
+            description: "Break taboos, embrace knowledge—periods with confidence.",
+            duration: "4 weeks",          
+            rating: 6.0,
+            youtubeId: "3Lt9I5LrWZw",
+            link: "vid43.html"
+          },
+          {
+            id: 44,
+            title: "Rest, Sleep & Mental Wellness",
+            description: "Sleep well, stress less—mind and body care.",
+            duration: "4 weeks",            
+            rating: 6.2,
+            youtubeId: "3h_AwmM6SxA",
+            link: "vid44.html"
+          },
+          {
+            id: 45,
+            title: "Exercise & Movement",
+            description: "Move daily, stay active—fitness for all ages.", 
+            duration: "4 weeks", 
+            rating: 7.0,
+            youtubeId: "i7LJ-39bFgE",
+            link: "vid45.html"
+          },
+          {
+            id: 46,
+            title: " Preventive Health Care",
+            description: "Stop sickness early—regular check-ups save lives.",
+            duration: "4 weeks",
+            rating: 7.5,
+            youtubeId: "J2eqPQzkW6o",
+            link: "vid46.html"
+          },
+          {
+            id: 47,
+            title: "Saying No to Bad Habits",
+            description: "Quit harmful habits, choose a better future.",
+            duration: "4 weeks",
+            rating: 8.0,
+            youtubeId: "CqgmozFr_GM",
+            link: "vid47.html"
+          },
+          {
+            id: 48,
+            title: " Self-esteem & Body Positivity",
+            description: "Love yourself—confidence starts from within",
+            duration: "4 weeks",          
+            rating: 8.5,
+            youtubeId: "qKfdHzSr-eI",
+            link: "vid48.html"
+          },
+          {
+            id: 49,
+            title: "When and How to Seek Help",
+            description: "Ask for support—health is your right.",
+            duration: "4 weeks",
+            rating: 8.8,
+            youtubeId: "vF2Z4T97xcQ",
+            link: "vid49.html"
+          }
         ]
       };
 
 
       const categories = [
+        { id: "All", name: "All" },
         { id: "digital", name: "Digital Literacy" },
         { id: "financial", name: "Financial Skills" },
         { id: "health", name: "Health & Wellness" },
         { id: "entrepreneurship", name: "Entrepreneurship" },
-        { id: "life-skills", name: "Life Skills" },
+        { id: "lifeskills", name: "Life Skills" },
       ];
 
       function App() {
