@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us - Rural Girls Empowerment</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #000, #1a1a1a);
+      color: white;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #form-status {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start">
+
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 py-3 bg-[#1A1A2D] shadow-md w-full">
+    <div class="flex items-center">
+      <img
+        src="/img/Udaan_logo__1_-removebg-preview.png"
+        alt="RuralGirls Logo"
+        class="h-24 w-auto hover:scale-110 transition-transform duration-300 drop-shadow-lg"
+      />
+    </div>
+    <ul class="flex space-x-6 text-lg font-semibold text-purple-200">
+      <li><a href="index.html" class="hover:text-pink-400 transition">Home</a></li>
+      <li><a onclick="lock()" class="hover:text-pink-400 transition cursor-pointer">Dashboard</a></li>
+      <li><a href="contact.html" class="hover:text-pink-400 transition">Contact Us</a></li>
+      <li><a href="signup.html" class="hover:text-pink-400 transition">Get-Started</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contact Form -->
+  <div class="flex flex-col items-center justify-center w-full h-full px-4 mt-16">
+    <form id="contact_us-form" class="glass p-8 rounded-xl w-full max-w-md space-y-6">
+      <h2 class="text-3xl font-extrabold text-center text-white">Contact Us</h2>
+
+      <input
+        type="text"
+        name="from_name"
+        placeholder="Your Name"
+        required
+        class="contact-input-name w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+      />
+
+      <input
+        type="email"
+        name="from_email"
+        placeholder="Your Email"
+        required
+        class="contact-input-email w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+      />
+
+      <input
+        type="text"
+        name="subject"
+        placeholder="Subject"
+        required
+        class="contact-input-subject w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+      />
+
+      <textarea
+        name="message"
+        rows="5"
+        placeholder="Your Message"
+        required
+        class="contact-input-message w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+      ></textarea>
+
+      <button
+        type="submit"
+        class="contact-submit-btn w-full py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold hover:opacity-90 transition"
+      >
+        Send Message
+      </button>
+
+      <p id="form-status" class="text-center pt-2 text-green-400"></p>
+    </form>
+  </div>
+
+  <!-- EmailJS Integration -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      emailjs.init("aqY2HLpPqbdaIDSYm"); // ✅ Use your correct public key here
+
+      document.getElementById("contact_us-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.querySelector(".contact-input-name").value;
+        const email = document.querySelector(".contact-input-email").value;
+        const subject = document.querySelector(".contact-input-subject").value;
+        const message = document.querySelector(".contact-input-message").value;
+        const submitBtn = document.querySelector(".contact-submit-btn");
+        const status = document.getElementById("form-status");
+
+        submitBtn.textContent = "Sending...";
+        submitBtn.disabled = true;
+
+        emailjs.send("service_fr74nga", "template_m3ogbmb", {
+          from_name: name,
+          from_email: email,
+          subject: subject,
+          message: message,
+        }).then(
+          function () {service_nfi3cm9
+            submitBtn.textContent = "Send Message";
+            submitBtn.disabled = false;
+            status.textContent = "✅ Email sent successfully!";
+            status.classList.remove("text-red-400");
+            status.classList.add("text-green-400");
+            document.getElementById("contact_us-form").reset();
+          },
+          function (error) {
+            submitBtn.textContent = "Send Message";
+            submitBtn.disabled = false;
+            status.textContent = "❌ Failed to send email. Please try again.";
+            status.classList.remove("text-green-400");
+            status.classList.add("text-red-400");
+            console.error("EmailJS Error:", error);
+          }
+        );
+      });
+    });
+  </script>
+</body>
+</html>

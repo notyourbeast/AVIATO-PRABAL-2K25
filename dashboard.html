@@ -3,274 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Document</title>
+    <title>Rural Lady Empowerment Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff6b35',
+                        'primary-light': '#ff8a5f',
+                        secondary: '#1a1a1a',
+                        'text-dark': '#e0e0e0',
+                        'text-light': '#a0a0a0',
+                        'dark-bg': '#1e1e1e',
+                        'gray-light': '#333',
+                        'gray-dark': '#444',
+                        success: '#22c55e',
+                        warning: '#f59e0b',
+                        danger: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <div class="main-content-2">
-        <div class="header">
-            <div class="page-title">Rural Lady Empowerment Dashboard</div>
-            <div class="header-actions">
-                <!-- Profile section in dashboard -->
-                <div class="w-5 h-5 flex items-center space-x-2"
-                    id="profileContainer">
-                    <img id="dashboardProfilePhoto" src="default-avatar.png"
-                        alt="Profile" class="profile-img" />
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <div class="p-5">
+        <!-- Header -->
+        <div class="bg-gray-800 rounded-lg p-4 mb-5 flex justify-between items-center shadow-md border border-gray-700">
+            <h1 class="text-xl font-semibold">Rural Lady Empowerment Dashboard</h1>
+            <div class="flex items-center space-x-2">
+                <div class="w-12 h-12 rounded-full overflow-hidden">
+                    <img id="dashboardProfilePhoto" src="default-avatar.png" alt="Profile" class="w-full h-full object-cover">
                 </div>
-                <span id="dashboardProfileName"
-                    class="text-white text-xs">Jake</span>
+                <span id="dashboardProfileName" class="text-sm">Jake</span>
             </div>
-    
         </div>
-    
-        <div class="dashboard-grid">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Overall Progress</div>
-                    <div class="card-actions">
-                        <button class="btn-icon"
-                            title="Edit"><i>✏️</i></button>
-                    </div>
+
+        <!-- Dashboard Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Overall Progress Card -->
+            <div class="bg-gray-800 rounded-lg p-5 shadow-md border border-gray-700">
+                <div class="flex justify-between items-center pb-3 border-b border-gray-700 mb-4">
+                    <h2 class="text-lg font-semibold">Overall Progress</h2>
+                    <button class="p-2 rounded hover:bg-gray-700" title="Edit">✏️</button>
                 </div>
-    
-                <div class="progress-bar">
-                    <div class="progress-bar-fill primary"
-                        style="width: 28%"></div>
+                
+                <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                    <div class="bg-primary h-2 rounded-full" style="width: 28%"></div>
                 </div>
-                <div class="progress-stats">
-                    <div>28% Complete</div>
-                    <div>36/128</div>
+                <div class="flex justify-between text-sm text-gray-400 mb-6">
+                    <span>28% Complete</span>
+                    <span>36/128</span>
                 </div>
-    
-                <div class="progress-grid">
-                    <div class="progress-item">
-                        <div class="progress-item-header">
-                            <div class="progress-category">Basic
-                                Skills</div>
-                            <div class="progress-percentage">45%</div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Basic Skills -->
+                    <div class="bg-gray-700 rounded-lg p-4 shadow border border-gray-600">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Basic Skills</span>
+                            <span class="font-semibold">45%</span>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill success"
-                                style="width: 45%"></div>
+                        <div class="w-full bg-gray-600 rounded-full h-2 mb-2">
+                            <div class="bg-success h-2 rounded-full" style="width: 45%"></div>
                         </div>
-                        <div class="progress-count">
-                            18/40
-                            <span class="progress-label">completed</span>
+                        <div class="text-xl font-semibold">
+                            18/40 <span class="text-sm font-normal text-gray-400">completed</span>
                         </div>
                     </div>
-                    <div class="progress-item">
-                        <div class="progress-item-header">
-                            <div class="progress-category">Digital
-                                Literacy</div>
-                            <div class="progress-percentage">32%</div>
+                    
+                    <!-- Digital Literacy -->
+                    <div class="bg-gray-700 rounded-lg p-4 shadow border border-gray-600">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Digital Literacy</span>
+                            <span class="font-semibold">32%</span>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill warning"
-                                style="width: 32%"></div>
+                        <div class="w-full bg-gray-600 rounded-full h-2 mb-2">
+                            <div class="bg-warning h-2 rounded-full" style="width: 32%"></div>
                         </div>
-                        <div class="progress-count">
-                            12/38
-                            <span class="progress-label">completed</span>
+                        <div class="text-xl font-semibold">
+                            12/38 <span class="text-sm font-normal text-gray-400">completed</span>
                         </div>
                     </div>
-                    <div class="progress-item">
-                        <div class="progress-item-header">
-                            <div
-                                class="progress-category">Entrepreneurship</div>
-                            <div class="progress-percentage">12%</div>
+                    
+                    <!-- Entrepreneurship -->
+                    <div class="bg-gray-700 rounded-lg p-4 shadow border border-gray-600">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Entrepreneurship</span>
+                            <span class="font-semibold">12%</span>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill primary"
-                                style="width: 12%"></div>
+                        <div class="w-full bg-gray-600 rounded-full h-2 mb-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 12%"></div>
                         </div>
-                        <div class="progress-count">
-                            6/50
-                            <span class="progress-label">completed</span>
+                        <div class="text-xl font-semibold">
+                            6/50 <span class="text-sm font-normal text-gray-400">completed</span>
                         </div>
                     </div>
                 </div>
             </div>
-    
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Skill Profile</div>
-                    <div class="card-actions">
-                        <button class="btn-icon"
-                            title="Edit"><i>✏️</i></button>
-                    </div>
+            
+            <!-- Skill Profile Card -->
+            <div class="bg-gray-800 rounded-lg p-5 shadow-md border border-gray-700">
+                <div class="flex justify-between items-center pb-3 border-b border-gray-700 mb-4">
+                    <h2 class="text-lg font-semibold">Skill Profile</h2>
+                    <button class="p-2 rounded hover:bg-gray-700" title="Edit">✏️</button>
                 </div>
-    
-                <div class="chart-container">
-                    <div class="donut-chart">
-                        <div class="donut-hole">
-                            <div class="donut-percentage">28%</div>
-                            <div class="donut-label">Overall</div>
+                
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <!-- Donut Chart -->
+                    <div class="relative w-40 h-40 mb-6 md:mb-0">
+                        <div class="w-full h-full rounded-full" style="background: conic-gradient(#ff6b35 0% 28%, #333 28% 100%)"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-28 h-28 bg-gray-800 rounded-full flex flex-col items-center justify-center">
+                                <span class="text-2xl font-semibold">28%</span>
+                                <span class="text-sm text-gray-400">Overall</span>
+                            </div>
                         </div>
-                        <div class="difficulty-markers">
-                            <div class="difficulty-marker easy"></div>
-                            <div class="difficulty-marker medium"></div>
-                            <div class="difficulty-marker hard"></div>
-                        </div>
+                        <!-- Difficulty markers -->
+                        <div class="absolute w-3 h-3 rounded-full bg-success top-10 right-12"></div>
+                        <div class="absolute w-3 h-3 rounded-full bg-warning bottom-12 right-10"></div>
+                        <div class="absolute w-3 h-3 rounded-full bg-danger bottom-10 right-12"></div>
                     </div>
-                    <div class="chart-stats">
-                        <div class="chart-stat-item">
-                            <div class="chart-stat-label">
-                                <div class="chart-stat-marker easy"></div>
-                                Easy
+                    
+                    <!-- Chart Stats -->
+                    <div class="flex-1 md:pl-8">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-success mr-2"></div>
+                                <span>Easy</span>
                             </div>
-                            <div class="chart-stat-value">18/30</div>
+                            <span class="font-medium">18/30</span>
                         </div>
-                        <div class="chart-stat-item">
-                            <div class="chart-stat-label">
-                                <div class="chart-stat-marker medium"></div>
-                                Medium
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-warning mr-2"></div>
+                                <span>Medium</span>
                             </div>
-                            <div class="chart-stat-value">12/50</div>
+                            <span class="font-medium">12/50</span>
                         </div>
-                        <div class="chart-stat-item">
-                            <div class="chart-stat-label">
-                                <div class="chart-stat-marker hard"></div>
-                                Advanced
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-danger mr-2"></div>
+                                <span>Advanced</span>
                             </div>
-                            <div class="chart-stat-value">6/48</div>
+                            <span class="font-medium">6/48</span>
                         </div>
                     </div>
                 </div>
             </div>
-    
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Skill Development</div>
-                    <div class="card-actions">
-                        <button class="btn-icon"
-                            title="Filter"><i>🔍</i></button>
-                        <button class="btn-icon"
-                            title="More options"><i>•••</i></button>
+            
+            <!-- Skill Development Card -->
+            <div class="bg-gray-800 rounded-lg p-5 shadow-md border border-gray-700">
+                <div class="flex justify-between items-center pb-3 border-b border-gray-700 mb-4">
+                    <h2 class="text-lg font-semibold">Skill Development</h2>
+                    <div class="flex space-x-2">
+                        <button class="p-2 rounded hover:bg-gray-700" title="Filter">🔍</button>
+                        <button class="p-2 rounded hover:bg-gray-700" title="More options">•••</button>
                     </div>
                 </div>
-    
-                <div class="skill-list">
-                    <div class="skill-item">
-                        <div class="skill-icon">📱</div>
-                        <div class="skill-info">
-                            <div class="skill-name">Smartphone Basics</div>
-                            <div class="skill-progress">
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill"
-                                        style="width: 80%"></div>
+                
+                <div class="space-y-4">
+                    <!-- Smartphone Basics -->
+                    <div class="flex items-center py-3 border-b border-gray-700">
+                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center mr-4">📱</div>
+                        <div class="flex-1">
+                            <h3 class="font-medium">Smartphone Basics</h3>
+                            <div class="flex items-center mt-1">
+                                <div class="flex-1 bg-gray-700 rounded-full h-1.5 mr-2">
+                                    <div class="bg-primary h-1.5 rounded-full" style="width: 80%"></div>
                                 </div>
-                                <div class="skill-percentage">80%</div>
+                                <span class="text-sm text-gray-400">80%</span>
                             </div>
                         </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">💰</div>
-                        <div class="skill-info">
-                            <div class="skill-name">Financial Literacy</div>
-                            <div class="skill-progress">
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill"
-                                        style="width: 45%"></div>
+                    
+                    <!-- Financial Literacy -->
+                    <div class="flex items-center py-3 border-b border-gray-700">
+                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center mr-4">💰</div>
+                        <div class="flex-1">
+                            <h3 class="font-medium">Financial Literacy</h3>
+                            <div class="flex items-center mt-1">
+                                <div class="flex-1 bg-gray-700 rounded-full h-1.5 mr-2">
+                                    <div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
                                 </div>
-                                <div class="skill-percentage">45%</div>
+                                <span class="text-sm text-gray-400">45%</span>
                             </div>
                         </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">🧵</div>
-                        <div class="skill-info">
-                            <div class="skill-name">Tailoring & Craft</div>
-                            <div class="skill-progress">
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill"
-                                        style="width: 60%"></div>
+                    
+                    <!-- Tailoring & Craft -->
+                    <div class="flex items-center py-3 border-b border-gray-700">
+                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center mr-4">🧵</div>
+                        <div class="flex-1">
+                            <h3 class="font-medium">Tailoring & Craft</h3>
+                            <div class="flex items-center mt-1">
+                                <div class="flex-1 bg-gray-700 rounded-full h-1.5 mr-2">
+                                    <div class="bg-primary h-1.5 rounded-full" style="width: 60%"></div>
                                 </div>
-                                <div class="skill-percentage">60%</div>
+                                <span class="text-sm text-gray-400">60%</span>
                             </div>
                         </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">🌱</div>
-                        <div class="skill-info">
-                            <div class="skill-name">Sustainable
-                                Agriculture</div>
-                            <div class="skill-progress">
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill"
-                                        style="width: 20%"></div>
+                    
+                    <!-- Sustainable Agriculture -->
+                    <div class="flex items-center py-3 border-b border-gray-700">
+                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center mr-4">🌱</div>
+                        <div class="flex-1">
+                            <h3 class="font-medium">Sustainable Agriculture</h3>
+                            <div class="flex items-center mt-1">
+                                <div class="flex-1 bg-gray-700 rounded-full h-1.5 mr-2">
+                                    <div class="bg-primary h-1.5 rounded-full" style="width: 20%"></div>
                                 </div>
-                                <div class="skill-percentage">20%</div>
+                                <span class="text-sm text-gray-400">20%</span>
                             </div>
                         </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-icon">💻</div>
-                        <div class="skill-info">
-                            <div class="skill-name">Basic Computer
-                                Skills</div>
-                            <div class="skill-progress">
-                                <div class="skill-progress-bar">
-                                    <div class="skill-progress-fill"
-                                        style="width: 35%"></div>
+                    
+                    <!-- Basic Computer Skills -->
+                    <div class="flex items-center py-3">
+                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center mr-4">💻</div>
+                        <div class="flex-1">
+                            <h3 class="font-medium">Basic Computer Skills</h3>
+                            <div class="flex items-center mt-1">
+                                <div class="flex-1 bg-gray-700 rounded-full h-1.5 mr-2">
+                                    <div class="bg-primary h-1.5 rounded-full" style="width: 35%"></div>
                                 </div>
-                                <div class="skill-percentage">35%</div>
+                                <span class="text-sm text-gray-400">35%</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Learning Progress</div>
-                    <div class="card-actions">
-                        <button class="btn btn-primary"
-                            id="add-new-btn"><i>➕</i> Add New</button>
+            
+            <!-- Learning Progress Card -->
+            <div class="bg-gray-800 rounded-lg p-5 shadow-md border border-gray-700">
+                <div class="flex justify-between items-center pb-3 border-b border-gray-700 mb-4">
+                    <h2 class="text-lg font-semibold">Learning Progress</h2>
+                    <button class="bg-primary hover:bg-primary-light text-white px-3 py-1.5 rounded text-sm flex items-center">
+                        <span class="mr-1">➕</span> Add New
+                    </button>
+                </div>
+                
+                <!-- Tabs -->
+                <div class="flex border-b border-gray-700 mb-4">
+                    <button class="px-4 py-2 font-medium relative" data-tab="lectures">
+                        Lectures
+                    </button>
+                    <button class="px-4 py-2 font-medium text-primary relative active-tab" data-tab="todos">
+                        To-Do
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary"></span>
+                    </button>
+                    <button class="px-4 py-2 font-medium" data-tab="projects">
+                        Projects
+                    </button>
+                </div>
+                
+                <!-- Tab Content -->
+                <div class="tab-content" id="lectures-tab" style="display: none;">
+                    <div class="flex items-center py-3 border-b border-gray-700">
+                        <input type="checkbox" id="lecture-1" class="mr-3">
+                        <label for="lecture-1">Intro to Agriculture (Module 1)</label>
+                    </div>
+                    <div class="flex items-center py-3">
+                        <input type="checkbox" id="lecture-2" class="mr-3">
+                        <label for="lecture-2">Basic Computer Skills (Module 2)</label>
                     </div>
                 </div>
-    
-                <div class="tab-navigation">
-                    <button class="tab-btn"
-                        data-tab="lectures">Lectures</button>
-                    <button class="tab-btn active"
-                        data-tab="todos">To-Do</button>
-                    <button class="tab-btn"
-                        data-tab="projects">Projects</button>
+                
+                <div class="tab-content" id="todos-tab">
+                    <div class="flex items-center py-3 border-b border-gray-700">
+                        <input type="checkbox" id="todo-1" class="mr-3">
+                        <label for="todo-1">Complete Financial Literacy Test</label>
+                    </div>
+                    <div class="flex items-center py-3">
+                        <input type="checkbox" id="todo-2" class="mr-3">
+                        <label for="todo-2">Attend Tailoring Workshop</label>
+                    </div>
                 </div>
-    
-                <div class="tab-content">
-                    <div id="lectures" class="tab-pane">
-                        <div class="todo-item">
-                            <input type="checkbox" id="lecture-1">
-                            <label for="lecture-1">Intro to Agriculture
-                                (Module 1)</label>
-                        </div>
-                        <div class="todo-item">
-                            <input type="checkbox" id="lecture-2">
-                            <label for="lecture-2">Basic Computer Skills
-                                (Module 2)</label>
-                        </div>
-                    </div>
-    
-                    <div id="todos" class="tab-pane active">
-                        <div class="todo-item">
-                            <input type="checkbox" id="todo-1">
-                            <label for="todo-1">Complete Financial Literacy
-                                Test</label>
-                        </div>
-                        <div class="todo-item">
-                            <input type="checkbox" id="todo-2">
-                            <label for="todo-2">Attend Tailoring
-                                Workshop</label>
-                        </div>
-                    </div>
-    
-                    <div id="projects" class="tab-pane">
-                        <div class="todo-item">
-                            <input type="checkbox" id="project-1">
-                            <label for="project-1">Design My Business
-                                Plan</label>
-                        </div>
+                
+                <div class="tab-content" id="projects-tab" style="display: none;">
+                    <div class="flex items-center py-3">
+                        <input type="checkbox" id="project-1" class="mr-3">
+                        <label for="project-1">Design My Business Plan</label>
                     </div>
                 </div>
             </div>
@@ -282,11 +296,11 @@
         document.addEventListener("DOMContentLoaded", () => {
             const profileName = localStorage.getItem("userName") || "Guest";
             const profilePhoto = localStorage.getItem("profilePhoto") || "default-avatar.png";
-
+    
             document.getElementById("dashboardProfileName").textContent = profileName;
             document.getElementById("dashboardProfilePhoto").src = profilePhoto;
         });
-
+    
         // Add event listener for logout
         function logout() {
             // Clear local storage and redirect to login
@@ -296,38 +310,85 @@
         window.addEventListener('DOMContentLoaded', () => {
     const storedPhoto = localStorage.getItem('profilePhoto');
     const storedName = localStorage.getItem('profileName');
-
+    
     if (storedPhoto) {
       const img = document.getElementById('dashboardProfilePhoto');
       if (img) img.src = storedPhoto;
     }
-
+    
     if (storedName) {
       const nameSpan = document.getElementById('dashboardProfileName');
       if (nameSpan) nameSpan.textContent = storedName;
     }
-  });
-
-  function loadPage(pageUrl) {
+    });
+    
+    function loadPage(pageUrl) {
         const iframe = document.getElementById('contentFrame');
         const loading = document.getElementById('loading');
-
+    
         // Show loading
         loading.classList.remove('hidden');
-
+    
         // Optional: Clear previous iframe visually (black issue workaround)
         iframe.style.opacity = "0";
-
+    
         // Change src to the new page
         iframe.src = pageUrl;
-
+    
         // Wait for iframe to load, then hide loading and show content
         iframe.onload = () => {
             loading.classList.add('hidden');
             iframe.style.opacity = "1";
         };
     }
+    // Tab functionality
+    const tabButtons = document.querySelectorAll('[data-tab]');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('text-primary', 'active-tab');
+                        const span = btn.querySelector('span');
+                        if (span) span.remove();
+                    });
+                    
+                    // Add active class to clicked button
+                    button.classList.add('text-primary', 'active-tab');
+                    const span = document.createElement('span');
+                    span.className = 'absolute bottom-0 left-0 w-full h-0.5 bg-primary';
+                    button.appendChild(span);
+                    
+                    // Hide all tab contents
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    // Show selected tab content
+                    const tabId = button.getAttribute('data-tab') + '-tab';
+                    document.getElementById(tabId).style.display = 'block';
+                });
+            });
 
+    document.addEventListener("DOMContentLoaded", () => {
+        const tabs = document.querySelectorAll("[data-tab]");
+        const contents = {
+            lectures: document.getElementById("lectures-tab"),
+            todos: document.getElementById("todos-tab"),
+            projects: document.getElementById("projects-tab"),
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabs.forEach(t => t.classList.remove("text-primary", "active-tab"));
+                tab.classList.add("text-primary", "active-tab");
+
+                Object.keys(contents).forEach(k => contents[k].style.display = "none");
+                contents[tab.dataset.tab].style.display = "block";
+            });
+        });
+    });
+
+    
     </script>
     <script src="/js/script.js"></script>
 </body>

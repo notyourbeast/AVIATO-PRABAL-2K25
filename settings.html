@@ -11,6 +11,7 @@
       font-family: 'Segoe UI', sans-serif;
       background: radial-gradient(circle at center, #101010, #0b0b0b 80%);
       color: white;
+      min-height: 100vh;
     }
 
     @keyframes fadeIn {
@@ -18,7 +19,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cursor glow effect */
     .cursor-glow {
       pointer-events: none;
       position: fixed;
@@ -43,10 +43,11 @@
 
     .form-field {
       transition: all 0.3s ease;
+      background-color: rgba(30, 30, 30, 0.7) !important;
     }
 
     .form-field:hover {
-      background: linear-gradient(90deg, #1f1f1f, #2a2a2a);
+      background: linear-gradient(90deg, #1f1f1f, #2a2a2a) !important;
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
     }
 
@@ -58,17 +59,33 @@
       box-shadow: 0 0 8px #e0e0e0, 0 0 20px #8b8b8b, 0 0 20px #ffffff;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Added default image styling for profile preview */
+    #profilePreview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #2d2d2d;
     }
 
-    select, input[type="text"], input[type="file"] {
-      background-color: transparent !important;
+    /* Style for file input */
+    input[type="file"]::file-selector-button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    /* Added focus styles for better accessibility */
+    input:focus, select:focus {
+      outline: 2px solid #ff6b35;
+      outline-offset: 2px;
     }
   </style>
 </head>
-<body class="text-white flex items-center justify-center p-6">
+<body class="text-white flex items-center justify-center p-6 min-h-screen">
 
   <div id="cursorGlow" class="cursor-glow"></div>
 
@@ -80,32 +97,33 @@
       <label class="block mb-2 font-semibold"><i class="fas fa-camera mr-2"></i>Profile Photo</label>
       <input type="file" id="profilePhotoInput" accept="image/*" class="form-field w-full text-white p-2 rounded border border-gray-600">
       <div id="profilePreview" class="mt-3 w-16 h-16 rounded-full overflow-hidden border-2 border-gray-600">
-        <img id="photoInput" src="" alt="Profile Photo" class="w-full h-full object-cover" />
+        <img id="photoInput" src="" alt="Profile Photo" class="w-full h-full object-cover hidden"/>
+        <i class="fas fa-user text-2xl text-gray-400" id="defaultProfileIcon"></i>
       </div>
     </div>
 
     <!-- Name -->
     <div class="mb-5">
-      <label class="block mb-1 font-semibold"><i class="fas fa-user mr-2"></i>Name</label>
-      <input type="text" id="nameInput" class="form-field w-full p-3 rounded text-white border border-gray-700" placeholder="Enter your name">
+      <label for="nameInput" class="block mb-1 font-semibold"><i class="fas fa-user mr-2"></i>Name</label>
+      <input type="text" id="nameInput" class="form-field w-full p-3 rounded text-white border border-gray-700" placeholder="Enter your name" required>
     </div>
 
     <!-- Phone Number -->
     <div class="mb-5">
-      <label class="block mb-1 font-semibold"><i class="fas fa-phone-alt mr-2"></i>Phone Number</label>
-      <input type="text" id="userPhone" class="form-field w-full p-3 rounded text-white border border-gray-700" placeholder="Enter your phone number">
+      <label for="userPhone" class="block mb-1 font-semibold"><i class="fas fa-phone-alt mr-2"></i>Phone Number</label>
+      <input type="tel" id="userPhone" class="form-field w-full p-3 rounded text-white border border-gray-700" placeholder="Enter your phone number" pattern="[0-9]{10}">
     </div>
 
     <!-- Language Selection -->
     <div class="mb-6">
-      <label class="block mb-1 font-semibold"><i class="fas fa-language mr-2"></i>Language</label>
+      <label for="languageSelect" class="block mb-1 font-semibold"><i class="fas fa-language mr-2"></i>Language</label>
       <select id="languageSelect" class="form-field w-full p-3 rounded text-white border border-gray-700">
         <option value="en">English</option>
         <option value="hi">Hindi</option>
       </select>
     </div>
 
-    <button onclick="saveProfileSettings()" class="w-full py-3 rounded-lg bg-gradient-to-r from-white to-gray-400 text-black font-bold hover:shadow-xl transition-all">
+    <button onclick="saveProfileSettings()" class="w-full py-3 rounded-lg bg-gradient-to-r from-white to-gray-400 text-black font-bold hover:shadow-xl transition-all hover:from-gray-300 hover:to-gray-200">
       💾 Save Settings
     </button>
   </div>
@@ -114,15 +132,37 @@
   <div id="google_translate_element" style="display:none;"></div>
 
   <script>
+    // Cursor glow effect
+    document.addEventListener('mousemove', (e) => {
+      const cursorGlow = document.getElementById('cursorGlow');
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+    });
+
     const profileInput = document.getElementById('profilePhotoInput');
     const previewImg = document.getElementById('photoInput');
+    const defaultIcon = document.getElementById('defaultProfileIcon');
 
     profileInput.addEventListener('change', function () {
       const file = this.files[0];
       if (file) {
+        // Validate file type
+        if (!file.type.match('image.*')) {
+          alert('Please select an image file (JPEG, PNG, etc.)');
+          return;
+        }
+        
+        // Validate file size (max 2MB)
+        if (file.size > 2 * 1024 * 1024) {
+          alert('Image size should be less than 2MB');
+          return;
+        }
+
         const reader = new FileReader();
         reader.onload = function (e) {
           previewImg.src = e.target.result;
+          previewImg.classList.remove('hidden');
+          defaultIcon.classList.add('hidden');
           localStorage.setItem('profilePhoto', e.target.result);
         };
         reader.readAsDataURL(file);
@@ -134,17 +174,36 @@
       const phone = document.getElementById("userPhone").value;
       const language = document.getElementById("languageSelect").value;
 
+      // Basic validation
+      if (!name) {
+        alert("Please enter your name");
+        return;
+      }
+
+      if (phone && !/^\d{10}$/.test(phone)) {
+        alert("Please enter a valid 10-digit phone number");
+        return;
+      }
+
       localStorage.setItem("profileName", name);
       localStorage.setItem("userPhone", phone);
       localStorage.setItem("language", language);
 
-      alert("✅ Profile saved!");
+      alert("✅ Profile saved successfully!");
+      
+      // Redirect to dashboard after saving
+      window.location.href = "dashboard.html";
     }
 
     window.onload = function () {
+      // Load saved profile photo
       if (localStorage.getItem('profilePhoto')) {
         previewImg.src = localStorage.getItem('profilePhoto');
+        previewImg.classList.remove('hidden');
+        defaultIcon.classList.add('hidden');
       }
+      
+      // Load other saved settings
       document.getElementById('nameInput').value = localStorage.getItem('profileName') || '';
       document.getElementById('userPhone').value = localStorage.getItem('userPhone') || '';
       document.getElementById('languageSelect').value = localStorage.getItem('language') || 'en';
@@ -157,7 +216,8 @@
       new google.translate.TranslateElement({
         pageLanguage: 'en',
         includedLanguages: 'en,hi',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
       }, 'google_translate_element');
     }
   </script>
