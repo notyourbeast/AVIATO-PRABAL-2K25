@@ -1,395 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rural Lady Empowerment Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#ff6b35',
-                        'primary-light': '#ff8a5f',
-                        secondary: '#1a1a1a',
-                        'text-dark': '#e0e0e0',
-                        'text-light': '#a0a0a0',
-                        'dark-bg': '#1e1e1e',
-                        'gray-light': '#333',
-                        'gray-dark': '#444',
-                        success: '#22c55e',
-                        warning: '#f59e0b',
-                        danger: '#ef4444',
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmpowerHer - Women Empowerment Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @keyframes gradient-x {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
+    }
+    .animate-gradient-x {
+      background-size: 200% 200%;
+      animation: gradient-x 6s ease infinite;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .fade-in {
+      animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .float-animation {
+      animation: float 4s ease-in-out infinite;
+    }
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.03);
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen">
-    <div class="p-5">
-        <!-- Header -->
-        <div class="bg-gray-800 rounded-lg p-4 mb-5 flex justify-between items-center shadow-md border border-gray-700">
-            <h1 class="text-xl font-semibold">Rural Lady Empowerment Dashboard</h1>
-            <div class="flex items-center space-x-2">
-                <div class="w-12 h-12 rounded-full overflow-hidden">
-                    <img id="dashboardProfilePhoto" src="default-avatar.png" alt="Profile" class="w-full h-full object-cover">
-                </div>
-                <span id="dashboardProfileName" class="text-sm">Jake</span>
-            </div>
-        </div>
+<body class="dark bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100 min-h-screen overflow-x-hidden">
+  <!-- Animated Background Elements -->
+  <div class="fixed -z-10 w-full h-full overflow-hidden">
+    <div class="absolute top-20 left-10 w-20 h-20 rounded-full bg-blue-500 opacity-10 blur-xl animate-pulse"></div>
+    <div class="absolute bottom-40 right-20 w-32 h-32 rounded-full bg-blue-600 opacity-10 blur-xl animate-pulse delay-300"></div>
+    <div class="absolute top-1/3 right-1/4 w-16 h-16 rounded-full bg-blue-400 opacity-10 blur-xl animate-pulse delay-700"></div>
+  </div>
 
-        <!-- Dashboard Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <!-- Overall Progress Card -->
-            <div class="bg-gray-800 rounded-lg p-5 shadow-md border border-gray-700">
-                <div class="flex justify-between items-center pb-3 border-b border-gray-700 mb-4">
-                    <h2 class="text-lg font-semibold">Overall Progress</h2>
-                    <button class="p-2 rounded hover:bg-gray-700" title="Edit">✏️</button>
-                </div>
-                
-                <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
-                    <div class="bg-primary h-2 rounded-full" style="width: 28%"></div>
-                </div>
-                <div class="flex justify-between text-sm text-gray-400 mb-6">
-                    <span>28% Complete</span>
-                    <span>36/128</span>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <!-- Basic Skills -->
-                    <div class="bg-gray-700 rounded-lg p-4 shadow border border-gray-600">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Basic Skills</span>
-                            <span class="font-semibold">45%</span>
-                        </div>
-                        <div class="w-full bg-gray-600 rounded-full h-2 mb-2">
-                            <div class="bg-success h-2 rounded-full" style="width: 45%"></div>
-                        </div>
-                        <div class="text-xl font-semibold">
-                            18/40 <span class="text-sm font-normal text-gray-400">completed</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Digital Literacy -->
-                    <div class="bg-gray-700 rounded-lg p-4 shadow border border-gray-600">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Digital Literacy</span>
-                            <span class="font-semibold">32%</span>
-                        </div>
-                        <div class="w-full bg-gray-600 rounded-full h-2 mb-2">
-                            <div class="bg-warning h-2 rounded-full" style="width: 32%"></div>
-                        </div>
-                        <div class="text-xl font-semibold">
-                            12/38 <span class="text-sm font-normal text-gray-400">completed</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Entrepreneurship -->
-                    <div class="bg-gray-700 rounded-lg p-4 shadow border border-gray-600">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Entrepreneurship</span>
-                            <span class="font-semibold">12%</span>
-                        </div>
-                        <div class="w-full bg-gray-600 rounded-full h-2 mb-2">
-                            <div class="bg-primary h-2 rounded-full" style="width: 12%"></div>
-                        </div>
-                        <div class="text-xl font-semibold">
-                            6/50 <span class="text-sm font-normal text-gray-400">completed</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Skill Profile Card -->
-            <div class="bg-gray-800 rounded-lg p-5 shadow-md border border-gray-700">
-                <div class="flex justify-between items-center pb-3 border-b border-gray-700 mb-4">
-                    <h2 class="text-lg font-semibold">Skill Profile</h2>
-                    <button class="p-2 rounded hover:bg-gray-700" title="Edit">✏️</button>
-                </div>
-                
-                <div class="flex flex-col md:flex-row items-center justify-between">
-                    <!-- Donut Chart -->
-                    <div class="relative w-40 h-40 mb-6 md:mb-0">
-                        <div class="w-full h-full rounded-full" style="background: conic-gradient(#ff6b35 0% 28%, #333 28% 100%)"></div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-28 h-28 bg-gray-800 rounded-full flex flex-col items-center justify-center">
-                                <span class="text-2xl font-semibold">28%</span>
-                                <span class="text-sm text-gray-400">Overall</span>
-                            </div>
-                        </div>
-                        <!-- Difficulty markers -->
-                        <div class="absolute w-3 h-3 rounded-full bg-success top-10 right-12"></div>
-                        <div class="absolute w-3 h-3 rounded-full bg-warning bottom-12 right-10"></div>
-                        <div class="absolute w-3 h-3 rounded-full bg-danger bottom-10 right-12"></div>
-                    </div>
-                    
-                    <!-- Chart Stats -->
-                    <div class="flex-1 md:pl-8">
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-success mr-2"></div>
-                                <span>Easy</span>
-                            </div>
-                            <span class="font-medium">18/30</span>
-                        </div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-warning mr-2"></div>
-                                <span>Medium</span>
-                            </div>
-                            <span class="font-medium">12/50</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-danger mr-2"></div>
-                                <span>Advanced</span>
-                            </div>
-                            <span class="font-medium">6/48</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Skill Development Card -->
-            <div class="bg-gray-800 rounded-lg p-5 shadow-md border border-gray-700">
-                <div class="flex justify-between items-center pb-3 border-b border-gray-700 mb-4">
-                    <h2 class="text-lg font-semibold">Skill Development</h2>
-                    <div class="flex space-x-2">
-                        <button class="p-2 rounded hover:bg-gray-700" title="Filter">🔍</button>
-                        <button class="p-2 rounded hover:bg-gray-700" title="More options">•••</button>
-                    </div>
-                </div>
-                
-                <div class="space-y-4">
-                    <!-- Smartphone Basics -->
-                    <div class="flex items-center py-3 border-b border-gray-700">
-                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center mr-4">📱</div>
-                        <div class="flex-1">
-                            <h3 class="font-medium">Smartphone Basics</h3>
-                            <div class="flex items-center mt-1">
-                                <div class="flex-1 bg-gray-700 rounded-full h-1.5 mr-2">
-                                    <div class="bg-primary h-1.5 rounded-full" style="width: 80%"></div>
-                                </div>
-                                <span class="text-sm text-gray-400">80%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Financial Literacy -->
-                    <div class="flex items-center py-3 border-b border-gray-700">
-                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center mr-4">💰</div>
-                        <div class="flex-1">
-                            <h3 class="font-medium">Financial Literacy</h3>
-                            <div class="flex items-center mt-1">
-                                <div class="flex-1 bg-gray-700 rounded-full h-1.5 mr-2">
-                                    <div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
-                                </div>
-                                <span class="text-sm text-gray-400">45%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Tailoring & Craft -->
-                    <div class="flex items-center py-3 border-b border-gray-700">
-                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center mr-4">🧵</div>
-                        <div class="flex-1">
-                            <h3 class="font-medium">Tailoring & Craft</h3>
-                            <div class="flex items-center mt-1">
-                                <div class="flex-1 bg-gray-700 rounded-full h-1.5 mr-2">
-                                    <div class="bg-primary h-1.5 rounded-full" style="width: 60%"></div>
-                                </div>
-                                <span class="text-sm text-gray-400">60%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Sustainable Agriculture -->
-                    <div class="flex items-center py-3 border-b border-gray-700">
-                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center mr-4">🌱</div>
-                        <div class="flex-1">
-                            <h3 class="font-medium">Sustainable Agriculture</h3>
-                            <div class="flex items-center mt-1">
-                                <div class="flex-1 bg-gray-700 rounded-full h-1.5 mr-2">
-                                    <div class="bg-primary h-1.5 rounded-full" style="width: 20%"></div>
-                                </div>
-                                <span class="text-sm text-gray-400">20%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Basic Computer Skills -->
-                    <div class="flex items-center py-3">
-                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center mr-4">💻</div>
-                        <div class="flex-1">
-                            <h3 class="font-medium">Basic Computer Skills</h3>
-                            <div class="flex items-center mt-1">
-                                <div class="flex-1 bg-gray-700 rounded-full h-1.5 mr-2">
-                                    <div class="bg-primary h-1.5 rounded-full" style="width: 35%"></div>
-                                </div>
-                                <span class="text-sm text-gray-400">35%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Learning Progress Card -->
-            <div class="bg-gray-800 rounded-lg p-5 shadow-md border border-gray-700">
-                <div class="flex justify-between items-center pb-3 border-b border-gray-700 mb-4">
-                    <h2 class="text-lg font-semibold">Learning Progress</h2>
-                    <button class="bg-primary hover:bg-primary-light text-white px-3 py-1.5 rounded text-sm flex items-center">
-                        <span class="mr-1">➕</span> Add New
-                    </button>
-                </div>
-                
-                <!-- Tabs -->
-                <div class="flex border-b border-gray-700 mb-4">
-                    <button class="px-4 py-2 font-medium relative" data-tab="lectures">
-                        Lectures
-                    </button>
-                    <button class="px-4 py-2 font-medium text-primary relative active-tab" data-tab="todos">
-                        To-Do
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary"></span>
-                    </button>
-                    <button class="px-4 py-2 font-medium" data-tab="projects">
-                        Projects
-                    </button>
-                </div>
-                
-                <!-- Tab Content -->
-                <div class="tab-content" id="lectures-tab" style="display: none;">
-                    <div class="flex items-center py-3 border-b border-gray-700">
-                        <input type="checkbox" id="lecture-1" class="mr-3">
-                        <label for="lecture-1">Intro to Agriculture (Module 1)</label>
-                    </div>
-                    <div class="flex items-center py-3">
-                        <input type="checkbox" id="lecture-2" class="mr-3">
-                        <label for="lecture-2">Basic Computer Skills (Module 2)</label>
-                    </div>
-                </div>
-                
-                <div class="tab-content" id="todos-tab">
-                    <div class="flex items-center py-3 border-b border-gray-700">
-                        <input type="checkbox" id="todo-1" class="mr-3">
-                        <label for="todo-1">Complete Financial Literacy Test</label>
-                    </div>
-                    <div class="flex items-center py-3">
-                        <input type="checkbox" id="todo-2" class="mr-3">
-                        <label for="todo-2">Attend Tailoring Workshop</label>
-                    </div>
-                </div>
-                
-                <div class="tab-content" id="projects-tab" style="display: none;">
-                    <div class="flex items-center py-3">
-                        <input type="checkbox" id="project-1" class="mr-3">
-                        <label for="project-1">Design My Business Plan</label>
-                    </div>
-                </div>
-            </div>
+<!-- Header -->
+<div class="bg-gray-800 rounded-lg p-4 mb-5 flex justify-between items-center shadow-md border border-gray-700">
+    <h1 class="text-xl font-semibold">Rural Lady Empowerment Dashboard</h1>
+    <div class="flex items-center space-x-2">
+        <div class="w-12 h-12 rounded-full overflow-hidden">
+            <img id="dashboardProfilePhoto" src="default-avatar.png" alt="Profile" class="w-full h-full object-cover">
         </div>
+        <span id="dashboardProfileName" class="text-sm">Jake</span>
     </div>
+</div>
 
-    <script>
-        // Update the profile photo and name in the dashboard
-        document.addEventListener("DOMContentLoaded", () => {
-            const profileName = localStorage.getItem("userName") || "Guest";
-            const profilePhoto = localStorage.getItem("profilePhoto") || "default-avatar.png";
-    
-            document.getElementById("dashboardProfileName").textContent = profileName;
-            document.getElementById("dashboardProfilePhoto").src = profilePhoto;
+  <!-- Navigation -->
+  <nav class="glass p-4 sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">
+        <span class="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+          Empower<span class="text-white">Her</span>
+        </span>
+      </h1>
+      <div class="hidden md:flex space-x-6">
+        <a href="#about" class="text-blue-300 hover:text-white transition">About</a>
+        <a href="#programs" class="text-blue-300 hover:text-white transition">Programs</a>
+        <a href="#stories" class="text-blue-300 hover:text-white transition">Success Stories</a>
+      </div>
+      
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 fade-in">
+    <div class="text-center max-w-4xl">
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
+        <span class="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent animate-gradient-x">
+          Empower Rural Women
+        </span>
+      </h1>
+      <p class="text-xl md:text-2xl text-blue-200 mb-8 max-w-3xl mx-auto">
+        Bridging the digital divide to create opportunities for rural women through technology, education, and entrepreneurship.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#programs" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full hover:opacity-90 transition transform hover:scale-105 shadow-lg shadow-blue-500/20">
+          Explore Programs
+        </a>
+        <a href="community.html" class="px-8 py-3 border border-blue-500 text-blue-400 font-bold rounded-full hover:bg-blue-500 hover:text-white transition transform hover:scale-105">
+          Join Our Community
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <i class="fas fa-chevron-down text-blue-400 text-2xl"></i>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-800 to-gray-900">
+    <div class="container mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+            About EmpowerHer
+          </span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full mb-6"></div>
+        <p class="text-xl text-blue-200 max-w-3xl mx-auto">
+          We are a non-profit initiative dedicated to empowering rural women through digital literacy, financial independence, and entrepreneurial skills.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass p-8 rounded-xl hover-scale fade-in">
+          <div class="text-blue-400 text-4xl mb-4">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">Digital Literacy</h3>
+          <p class="text-blue-200">
+            We provide comprehensive training in smartphone usage, internet navigation, and digital tools to bridge the technology gap.
+          </p>
+        </div>
+        
+        <div class="glass p-8 rounded-xl hover-scale fade-in" style="animation-delay: 0.2s">
+          <div class="text-blue-400 text-4xl mb-4">
+            <i class="fas fa-rupee-sign"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">Financial Freedom</h3>
+          <p class="text-blue-200">
+            Our financial education programs teach savings, budgeting, banking, and entrepreneurship for economic independence.
+          </p>
+        </div>
+        
+        <div class="glass p-8 rounded-xl hover-scale fade-in" style="animation-delay: 0.4s">
+          <div class="text-blue-400 text-4xl mb-4">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">Community Support</h3>
+          <p class="text-blue-200">
+            We connect women with mentors, resources, and networks to foster growth and mutual support.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section id="programs" class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+            Our Programs
+          </span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full mb-6"></div>
+        <p class="text-xl text-blue-200 max-w-3xl mx-auto">
+          Comprehensive training programs designed specifically for rural women's empowerment.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Program 1 -->
+        <div class="glass p-6 rounded-xl hover-scale fade-in">
+          <div class="relative overflow-hidden rounded-lg h-48 mb-4">
+            <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                 alt="Digital Literacy" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+            <div class="absolute bottom-0 left-0 p-4">
+              <h3 class="text-xl font-bold text-white">Digital Literacy</h3>
+            </div>
+          </div>
+          <p class="text-blue-200 mb-4">
+            Master smartphones, internet, and essential digital tools to navigate the modern world.
+          </p>
+          <a href="community.html" class="text-blue-400 hover:text-blue-300 font-medium">Learn More →</a>
+        </div>
+        
+        <!-- Program 2 -->
+        <div class="glass p-6 rounded-xl hover-scale fade-in" style="animation-delay: 0.2s">
+          <div class="relative overflow-hidden rounded-lg h-48 mb-4">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                 alt="Financial Skills" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+            <div class="absolute bottom-0 left-0 p-4">
+              <h3 class="text-xl font-bold text-white">Financial Skills</h3>
+            </div>
+          </div>
+          <p class="text-blue-200 mb-4">
+            Learn banking, savings, budgeting, and digital payments for financial independence.
+          </p>
+          <a href="learning.html" class="text-blue-400 hover:text-blue-300 font-medium">Learn More →</a>
+        </div>
+        
+        <!-- Program 3 -->
+        <div class="glass p-6 rounded-xl hover-scale fade-in" style="animation-delay: 0.4s">
+          <div class="relative overflow-hidden rounded-lg h-48 mb-4">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                 alt="Entrepreneurship" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+            <div class="absolute bottom-0 left-0 p-4">
+              <h3 class="text-xl font-bold text-white">Entrepreneurship</h3>
+            </div>
+          </div>
+          <p class="text-blue-200 mb-4">
+            Start and grow your own business with our comprehensive entrepreneurship training.
+          </p>
+          <a href="store-landing.html" class="text-blue-400 hover:text-blue-300 font-medium">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories -->
+  <section id="stories" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-800 to-gray-900">
+    <div class="container mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+            Success Stories
+          </span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full mb-6"></div>
+        <p class="text-xl text-blue-200 max-w-3xl mx-auto">
+          Hear from women who transformed their lives through our programs.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Story 1 -->
+        <div class="glass p-6 rounded-xl hover-scale fade-in" style="animation-delay: 0.2s">
+            <div class="flex items-center mb-4">
+              <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-400">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.nlrqX_nEgkgHG23T41Tw_AHaE8&pid=Api&P=0&h=180" alt="Shradha Khapra" class="w-full h-full object-cover">
+              </div>
+              <div class="ml-4">
+                <h4 class="font-bold text-white">Shradha Khapra</h4>
+                <p class="text-sm text-blue-300">Co-founder, Apna College</p>
+              </div>
+            </div>
+            <p class="text-blue-200 italic mb-4">
+              "From small-town girl to empowering millions through tech education - every struggle was worth it."
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <div class="flex space-x-2">
+                <a href="https://www.linkedin.com/in/shradha-khapra/" target="_blank" class="text-blue-400 hover:text-white text-sm">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.youtube.com/@ApnaCollegeOfficial" target="_blank" class="text-blue-400 hover:text-white text-sm">
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        
+          <div class="glass p-6 rounded-xl hover-scale fade-in" style="animation-delay: 0.4s">
+            <div class="flex items-center mb-4">
+              <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-400">
+                <img src="https://tse2.mm.bing.net/th?id=OIP.PmB8KTa9gAaCI-RO-o-yQQHaHa&pid=Api&P=0&h=180" class="w-full h-full object-cover">
+              </div>
+              <div class="ml-4">
+                <h4 class="font-bold text-white">Kiran Mazumdar-Shaw</h4>
+                <p class="text-sm text-blue-300">Founder, Biocon</p>
+              </div>
+            </div>
+            <p class="text-blue-200 italic mb-4">
+              "When I started Biocon in 1978, people thought a woman couldn't run a biotech company. Today, we're changing global healthcare."
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="flex space-x-2">
+                <a href="https://www.linkedin.com/in/kiranmazumdarshaw/" target="_blank" class="text-blue-400 hover:text-white text-sm">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://twitter.com/kiranshaw" target="_blank" class="text-blue-400 hover:text-white text-sm">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        
+        <!-- Story 3 -->
+        <div class="glass p-6 rounded-xl hover-scale fade-in" style="animation-delay: 0.6s">
+            <div class="flex items-center mb-4">
+              <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-400">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.MDggBBXpXSa-J5NPlX4MVgHaEK&pid=Api&P=0&h=180" alt="Falguni Nayar" class="w-full h-full object-cover">
+              </div>
+              <div class="ml-4">
+                <h4 class="font-bold text-white">Falguni Nayar</h4>
+                <p class="text-sm text-blue-300">Founder & CEO, Nykaa</p>
+              </div>
+            </div>
+            <p class="text-blue-200 italic mb-4">
+              "I started Nykaa at 50, proving it's never too late to follow your dreams. Today we're empowering women through beauty and entrepreneurship."
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="flex space-x-2">
+                <a href="https://www.linkedin.com/in/falguninayar/" target="_blank" class="text-blue-400 hover:text-white text-sm">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://twitter.com/FalguniNayar" target="_blank" class="text-blue-400 hover:text-white text-sm">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="glass max-w-4xl mx-auto p-12 rounded-xl relative overflow-hidden">
+      <div class="absolute -z-10 inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-10"></div>
+      <h2 class="text-3xl font-bold mb-6 text-white">Ready to Transform Lives?</h2>
+      <p class="text-xl text-blue-200 mb-8 max-w-2xl mx-auto">
+        Join us in our mission to empower rural women through technology and education.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="store-landing.html" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full hover:opacity-90 transition transform hover:scale-105 shadow-lg shadow-blue-500/20">
+          Join as Participant
+        </a>
+        <a href="donate.html" class="px-8 py-3 border border-blue-500 text-blue-400 font-bold rounded-full hover:bg-blue-500 hover:text-white transition transform hover:scale-105">
+          Donate to Support
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
         });
+      });
+    });
+
+    // Animation on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
     
-        // Add event listener for logout
-        function logout() {
-            // Clear local storage and redirect to login
-            localStorage.clear();
-            window.location.href = "index.html";
+    const fadeInOnScroll = () => {
+      fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight - 100) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
         }
-        window.addEventListener('DOMContentLoaded', () => {
-    const storedPhoto = localStorage.getItem('profilePhoto');
-    const storedName = localStorage.getItem('profileName');
+      });
+    };
     
-    if (storedPhoto) {
-      const img = document.getElementById('dashboardProfilePhoto');
-      if (img) img.src = storedPhoto;
-    }
-    
-    if (storedName) {
-      const nameSpan = document.getElementById('dashboardProfileName');
-      if (nameSpan) nameSpan.textContent = storedName;
-    }
-    });
-    
-    function loadPage(pageUrl) {
-        const iframe = document.getElementById('contentFrame');
-        const loading = document.getElementById('loading');
-    
-        // Show loading
-        loading.classList.remove('hidden');
-    
-        // Optional: Clear previous iframe visually (black issue workaround)
-        iframe.style.opacity = "0";
-    
-        // Change src to the new page
-        iframe.src = pageUrl;
-    
-        // Wait for iframe to load, then hide loading and show content
-        iframe.onload = () => {
-            loading.classList.add('hidden');
-            iframe.style.opacity = "1";
-        };
-    }
-    // Tab functionality
-    const tabButtons = document.querySelectorAll('[data-tab]');
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('text-primary', 'active-tab');
-                        const span = btn.querySelector('span');
-                        if (span) span.remove();
-                    });
-                    
-                    // Add active class to clicked button
-                    button.classList.add('text-primary', 'active-tab');
-                    const span = document.createElement('span');
-                    span.className = 'absolute bottom-0 left-0 w-full h-0.5 bg-primary';
-                    button.appendChild(span);
-                    
-                    // Hide all tab contents
-                    document.querySelectorAll('.tab-content').forEach(content => {
-                        content.style.display = 'none';
-                    });
-                    
-                    // Show selected tab content
-                    const tabId = button.getAttribute('data-tab') + '-tab';
-                    document.getElementById(tabId).style.display = 'block';
-                });
-            });
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const tabs = document.querySelectorAll("[data-tab]");
-        const contents = {
-            lectures: document.getElementById("lectures-tab"),
-            todos: document.getElementById("todos-tab"),
-            projects: document.getElementById("projects-tab"),
-        };
-
-        tabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                tabs.forEach(t => t.classList.remove("text-primary", "active-tab"));
-                tab.classList.add("text-primary", "active-tab");
-
-                Object.keys(contents).forEach(k => contents[k].style.display = "none");
-                contents[tab.dataset.tab].style.display = "block";
-            });
-        });
-    });
-
-    
-    </script>
-    <script src="/js/script.js"></script>
+    window.addEventListener('scroll', fadeInOnScroll);
+    window.addEventListener('load', fadeInOnScroll);
+  </script>
 </body>
 </html>

@@ -6,31 +6,48 @@
   <title>EmpowerHer - Register</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#FF69B4',
-            secondary: '#FFA500'
-          }
-        }
-      }
-    };
-  </script>
+  <style>
+    @keyframes gradient-x {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
+    }
+    .animate-gradient-x {
+      background-size: 200% 200%;
+      animation: gradient-x 3s ease infinite;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 <body class="dark bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100 min-h-screen">
-  <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
+  <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 fade-in">
+    <div class="max-w-md w-full space-y-8 glass p-10 rounded-xl">
       <div>
-        <h1 class="text-center text-4xl font-bold text-pink-400">Empower<span class="text-orange-400">Her</span></h1>
-        <h2 class="mt-6 text-center text-2xl font-semibold text-gray-300">
+        <h1 class="text-center text-4xl font-extrabold mb-8">
+          <span class="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent animate-gradient-x">
+            Empower<span class="text-white">Her</span>
+          </span>
+          <span class="block mt-2 h-1 w-20 mx-auto bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"></span>
+        </h1>
+        <h2 class="mt-6 text-center text-2xl font-semibold text-blue-200">
           Create your account
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-400">
+        <p class="mt-2 text-center text-sm text-blue-300">
           Or
-          <a href="/store/store.html" class="font-medium text-pink-400 hover:text-pink-300">
+          <a href="/store/store.html" class="font-medium text-blue-400 hover:text-blue-300">
             sign in to your account
           </a>
         </p>
@@ -39,65 +56,65 @@
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="name" class="sr-only">Full Name</label>
-            <input id="name" name="name" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-gray-400 text-gray-100 rounded-t-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" placeholder="Full Name">
+            <input id="name" name="name" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-blue-300 text-white rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Full Name">
           </div>
           <div>
             <label for="email" class="sr-only">Email address</label>
-            <input id="email" name="email" type="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-gray-400 text-gray-100 focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" placeholder="Email address">
+            <input id="email" name="email" type="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-blue-300 text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Email address">
           </div>
           <div>
             <label for="password" class="sr-only">Password</label>
-            <input id="password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-gray-400 text-gray-100 focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" placeholder="Password">
+            <input id="password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-blue-300 text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Password">
           </div>
           <div>
             <label for="confirm-password" class="sr-only">Confirm Password</label>
-            <input id="confirm-password" name="confirm-password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-gray-400 text-gray-100 rounded-b-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-sm" placeholder="Confirm Password">
+            <input id="confirm-password" name="confirm-password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-blue-300 text-white rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Confirm Password">
           </div>
         </div>
 
         <div class="space-y-4">
           <div class="flex items-center">
-            <input id="is-seller" name="is-seller" type="checkbox" class="h-4 w-4 text-pink-500 focus:ring-pink-500 border-gray-700 rounded bg-gray-800">
-            <label for="is-seller" class="ml-2 block text-sm text-gray-400">
+            <input id="is-seller" name="is-seller" type="checkbox" class="h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-700 rounded bg-gray-800">
+            <label for="is-seller" class="ml-2 block text-sm text-blue-300">
               I want to register as a seller (can both buy and sell products)
             </label>
           </div>
 
           <div id="seller-fields" class="hidden space-y-4">
             <div>
-              <label for="age" class="block text-sm font-medium text-gray-300">Age</label>
-              <input type="number" id="age" class="mt-1 w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-gray-400 text-gray-100 rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
+              <label for="age" class="block text-sm font-medium text-blue-200">Age</label>
+              <input type="number" id="age" class="mt-1 w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-blue-300 text-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             </div>
             <div>
-              <label for="business-type" class="block text-sm font-medium text-gray-300">Business Type</label>
-              <select id="business-type" class="mt-1 w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-gray-400 text-gray-100 rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
-                <option value="">Select Business Type</option>
-                <option value="handicrafts">Handicrafts</option>
-                <option value="textiles">Textiles</option>
-                <option value="food">Food Products</option>
-                <option value="jewelry">Jewelry</option>
-                <option value="other">Other</option>
+              <label for="business-type" class="block text-sm font-medium text-blue-200">Business Type</label>
+              <select id="business-type" class="mt-1 w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <option value="" class="text-blue-300">Select Business Type</option>
+                <option value="handicrafts" class="text-white">Handicrafts</option>
+                <option value="textiles" class="text-white">Textiles</option>
+                <option value="food" class="text-white">Food Products</option>
+                <option value="jewelry" class="text-white">Jewelry</option>
+                <option value="other" class="text-white">Other</option>
               </select>
             </div>
             <div>
-              <label for="village" class="block text-sm font-medium text-gray-300">Village</label>
-              <input type="text" id="village" class="mt-1 w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-gray-400 text-gray-100 rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
+              <label for="village" class="block text-sm font-medium text-blue-200">Village</label>
+              <input type="text" id="village" class="mt-1 w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-blue-300 text-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             </div>
             <div>
-              <label for="phone" class="block text-sm font-medium text-gray-300">Phone Number</label>
-              <input type="tel" id="phone" class="mt-1 w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-gray-400 text-gray-100 rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
+              <label for="phone" class="block text-sm font-medium text-blue-200">Phone Number</label>
+              <input type="tel" id="phone" class="mt-1 w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-blue-300 text-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             </div>
             <div>
-              <label for="description" class="block text-sm font-medium text-gray-300">Business Description</label>
-              <textarea id="description" rows="3" class="mt-1 w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-gray-400 text-gray-100 rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm"></textarea>
+              <label for="description" class="block text-sm font-medium text-blue-200">Business Description</label>
+              <textarea id="description" rows="3" class="mt-1 w-full px-3 py-2 border border-gray-700 bg-gray-800 placeholder-blue-300 text-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
             </div>
           </div>
         </div>
 
         <div>
-          <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-500 hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+          <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition transform hover:scale-105 shadow-lg shadow-blue-500/20">
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-              <i class="fas fa-user-plus text-pink-400 group-hover:text-pink-300"></i>
+              <i class="fas fa-user-plus text-blue-300 group-hover:text-blue-200"></i>
             </span>
             Create Account
           </button>
@@ -177,4 +194,4 @@
     });
   </script>
 </body>
-</html> 
+</html>
