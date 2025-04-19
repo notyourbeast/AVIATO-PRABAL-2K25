@@ -35,7 +35,7 @@
     <div class="max-w-6xl mx-auto flex justify-between items-center px-4">
       <h1 class="text-2xl font-bold text-pink-400">Empower<span class="text-orange-400">Her</span> Seller Dashboard</h1>
       <div class="flex gap-4">
-        <a href="index.html" class="text-sm text-pink-400 hover:underline">View Store</a>
+        <a href="/store/store.html" class="text-sm text-pink-400 hover:underline">View Store</a>
         <button id="logout-btn" class="text-sm text-pink-400 hover:underline">Logout</button>
       </div>
     </div>
@@ -230,7 +230,7 @@
     // Check if user is logged in and is an entrepreneur
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     if (!currentUser || !currentUser.isEntrepreneur) {
-      window.location.href = 'login.html';
+      window.location.href = '/store/login.html';
     }
 
     // Load profile data
@@ -347,7 +347,7 @@
     // Handle logout
     document.getElementById('logout-btn').addEventListener('click', () => {
       sessionStorage.removeItem('currentUser');
-      window.location.href = 'login.html';
+      window.location.href = '/store/login.html';
     });
 
     // Product Management Functions

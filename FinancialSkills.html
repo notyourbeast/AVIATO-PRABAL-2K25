@@ -23,99 +23,95 @@
         digital: [
           {
             id: 1,
-            title: "Smartphone Mastery",
-            description: "Learn essential smartphone operations, apps, and online safety.",
+            title: "Understanding Money",
+            description: "Learn what money truly means and its power for women.",
             duration: "4 weeks",
-            students: 1200,
-            rating: 4.8,
-            youtubeId: "RIXxt21mohQ",
-            link: "vid1.html"
+            rating: 4.9,
+            youtubeId: "DNYCgsyOAW4",
+            link: "v1.html"
           },
           {
             id: 2,
-            title: "Financial Basics",
-            description: "Master budgeting and saving skills.",
-            duration: "3 weeks",
-            students: 950,
-            rating: 4.6,
-            youtubeId: "-iRW7BfsQvg",
-            link: "vid2.html"
+            title: "Saving Basics",
+            description: "Start small, save smart—secure your future with confidence.",
+            duration: "4 weeks",     
+            rating: 5.0,
+            youtubeId: "Z1bU3dE7Rdc",
+            link: "v2.html"
           },
           {
             id: 3,
-            title: "Financial Basics",
-            description: "Master budgeting and saving skills.",
-            duration: "3 weeks",
-            students: 950,
-            rating: 4.6,
-            youtubeId: "J6Xo2uCjhnA",
-            link: "vid3.html"
+            title: "Budgeting for Beginners ",
+            description: "Control your finances, achieve dreams with smart budgeting.",
+            duration: "4 weeks", 
+            rating: 5.2,
+            youtubeId: "-vVp185Sq24",
+            link: "v3.html"
           },
           {
             id: 4,
-            title: "Financial Basics",
-            description: "Master budgeting and saving skills.",
-            duration: "3 weeks",
-            students: 950,
-            rating: 4.6,
-            youtubeId: "Pe81UffDVWk",
-            link: "vid4.html"
+            title: "Banking Made Easy",
+            description: "Demystify banks—manage accounts, cards, and transactions effortlessly.",
+            duration: "4 weeks",          
+            rating: 6.0,
+            youtubeId: "fTTGALaRZoc",
+            link: "v4.html"
           },
-
           {
             id: 5,
-            title: "Decision Making & Goal Setting",
-            description: "Make wise choices—plan your future with purpose!",
+            title: "Digital Payments & UPI",
+            description: "Go cashless, pay safely, and embrace digital freedom.",
             duration: "4 weeks",            
             rating: 6.2,
-            youtubeId: "L4N1q4RNi9I",
-            link: "vid5.html"
+            youtubeId: "iI2NaN_QVTI",
+            link: "v5.html"
           },
           {
             id: 6,
-            title: "Managing Emotions & Stress",
-            description: "Stay strong—handle stress and emotions wisely!", 
+            title: "Loans & Borrowing",
+            description: "Borrow wisely—know loans, interest, and debt risks.", 
             duration: "4 weeks", 
             rating: 7.0,
-            youtubeId: "",
-            link: "vid6.html"
+            youtubeId: "fuiiJuB7tJs",
+            link: "v6.html"
           },
           {
             id: 7,
-            title: "Teamwork & Leadership",
-            description: "Lead with courage—work together for success!",
+            title: "Earning with Small Skills",
+            description: "Turn talents into income—side hustles for financial independence.",
             duration: "4 weeks",
             rating: 7.5,
-            youtubeId: "eXDNkwIeOqA",
-            link: "vid7.html"
+            youtubeId: "iOGmsUZwPCE",
+            link: "v7.html"
           },
           {
             id: 8,
-            title: "Saying No – Refusal & Safety Skills",
-            description: "Set boundaries—stay safe and say NO with power!",
+            title: "Financial Rights & Safety",
+            description: "Protect your money—fraud prevention and legal rights.",
             duration: "4 weeks",
             rating: 8.0,
-            youtubeId: "FtPRrn5nwAo",
-            link: "vid8.html"
+            youtubeId: "n6gDwiq5dHc",
+            link: "v8.html"
           },
           {
             id: 9,
-            title: "Time Management & Responsibility",
-            description: "Use time well—balance work and life smartly!",
+            title: "Investing Small, Growing Smart ",
+            description: "Start investing early, build wealth with small steps.",
             duration: "4 weeks",          
             rating: 8.5,
-            youtubeId: "31LZeMC5l3o",
-            link: "vid9.html"
+            youtubeId: "tHxwyWnNu0c",
+            link: "v9.html"
           },
           {
             id: 10,
-            title: "Hope, Dreams & Vision for the Future",
-            description: "Dream big—create a future full of possibilities!",
+            title: "Role Models & Success Stories",
+            description: "Be inspired—real women who conquered financial challenges.",
             duration: "4 weeks",
             rating: 8.8,
-            youtubeId: "AmTbx_8SMMw",
-            link: "vid10.html"
-          }
+            youtubeId: "EdpoEmifW7M",
+            link: "v10.html"
+          },
+         
           // Add more courses with their respective links
         ]
       };
@@ -177,12 +173,12 @@
                     <h2 className="text-xl font-semibold">{course.title}</h2>
                     <p>{course.description}</p>
                     <p className="text-sm text-gray-400">
-                      Rating: {course.rating} | Students: {course.students}
+                      Rating: {course.rating}
                     </p>
                   </div>
                   <button
                     type="button"
-                    onClick={() => window.location.href = `/vid/${course.link}`}
+                    onClick={() => window.location.href = `./${course.link}`}
                     className="mt-4 w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded"
                   >
                     Enroll

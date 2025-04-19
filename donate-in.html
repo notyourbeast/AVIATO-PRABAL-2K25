@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donate to Indian NGOs</title>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+  <header class="bg-gray-800 py-10 text-center">
+    <h1 class="text-3xl font-bold text-white">Support a Cause - Donate to Indian NGOs</h1>
+  </header>
+
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="flex justify-center mb-8">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search NGO name..."
+        onkeyup="searchNGOs()"
+        class="w-full max-w-md px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 text-white placeholder-gray-400"
+      />
+    </div>
+
+    <div id="ngoContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- NGO cards will be dynamically inserted -->
+    </div>
+
+    <button
+      id="toggleButton"
+      onclick="toggleNGOs()"
+      class="block mx-auto mt-10 px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg"
+    >
+      Show More
+    </button>
+
+    <div id="ngoDetails" class="hidden max-w-2xl mx-auto mt-12 p-6 bg-gray-800 rounded-xl shadow-lg">
+      <h2 id="ngoTitle" class="text-xl font-bold text-blue-300 mb-2"></h2>
+      <p id="ngoDescription" class="mb-2"></p>
+      <p><strong>Category:</strong> <span id="ngoCategory" class="text-blue-400"></span></p>
+      <p><strong>Website:</strong> <a id="ngoWebsite" href="#" target="_blank" class="text-blue-400 underline">Visit Website</a></p>
+    </div>
+
+    <div class="max-w-md mx-auto mt-16 p-6 bg-gray-800 rounded-xl shadow-lg">
+      <h2 class="text-2xl font-bold text-white mb-6">Custom Donation</h2>
+
+      <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="Your name"
+        class="w-full px-4 py-2 mb-4 rounded-lg bg-gray-700 text-white border border-gray-600 placeholder-gray-400"
+      />
+
+      <label for="amount" class="block text-sm font-medium mb-1">Donation Amount (INR)</label>
+      <input
+        type="number"
+        id="amount"
+        placeholder="Enter amount"
+        class="w-full px-4 py-2 mb-6 rounded-lg bg-gray-700 text-white border border-gray-600 placeholder-gray-400"
+      />
+
+      <button
+        onclick="makePayment()"
+        class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg"
+      >
+        Donate Now
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const ngoData = [
+      { name: "Goonj", description: "Focuses on rural development, disaster relief, and basic needs like clothing and sanitation.", category: "Rural Development", website: "https://goonj.org/donate/" },
+      { name: "Smile Foundation", description: "Works in education, healthcare, and women empowerment across India.", category: "Education & Health", website: "https://www.smilefoundationindia.org/donation/" },
+      { name: "Akshaya Patra", description: "Runs school lunch programs and supports child nutrition and education.", category: "Child Nutrition", website: "https://www.akshayapatra.org/donate" },
+      { name: "HelpAge India", description: "Dedicated to the care of the elderly and supports healthcare, livelihoods, and rights.", category: "Elderly Care", website: "https://www.helpageindia.org/donate/" },
+      { name: "CRY - Child Rights and You", description: "Ensures children's rights to survival, development, protection, and participation.", category: "Child Rights", website: "https://www.cry.org/donation/" },
+      { name: "Nanhi Kali", description: "Provides education support for underprivileged girls in India.", category: "Girls' Education", website: "https://www.nanhikali.org/donate/" },
+      { name: "Teach For India", description: "A movement to eliminate educational inequity through teaching fellowships.", category: "Education", website: "https://www.teachforindia.org/donate" },
+      { name: "Oxfam India", description: "Fights inequality and works in disaster relief, gender justice, and livelihood.", category: "Poverty & Disaster Relief", website: "https://www.oxfamindia.org/donate" },
+      { name: "Wildlife SOS", description: "Works to rescue and rehabilitate wildlife and combat animal cruelty in India.", category: "Wildlife Protection", website: "https://www.wildlifesos.org/donate/" }
+    ];
+
+    let showingAll = false;
+
+    function renderNGOs() {
+      const container = document.getElementById("ngoContainer");
+      container.innerHTML = "";
+
+      const toDisplay = showingAll ? ngoData : ngoData.slice(0, 5);
+
+      toDisplay.forEach(ngo => {
+        const card = document.createElement("div");
+        card.className = "bg-gray-800 rounded-xl p-5 shadow-lg hover:-translate-y-1 transition-all duration-300";
+        card.innerHTML = `
+          <h2 class="text-lg font-semibold text-blue-300 mb-2">${ngo.name}</h2>
+          <p class="text-sm text-gray-300">${ngo.description}</p>
+          <button class="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg" onclick="window.open('${ngo.website}', '_blank')">Donate</button>
+        `;
+        container.appendChild(card);
+      });
+
+      document.getElementById("toggleButton").textContent = showingAll ? "Show Less" : "Show More";
+    }
+
+    function toggleNGOs() {
+      showingAll = !showingAll;
+      renderNGOs();
+    }
+
+    function searchNGOs() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const container = document.getElementById("ngoContainer");
+      container.innerHTML = "";
+
+      const filtered = ngoData.filter(ngo => ngo.name.toLowerCase().includes(input));
+
+      filtered.forEach(ngo => {
+        const card = document.createElement("div");
+        card.className = "bg-gray-800 rounded-xl p-5 shadow-lg hover:-translate-y-1 transition-all duration-300";
+        card.innerHTML = `
+          <h2 class="text-lg font-semibold text-blue-300 mb-2">${ngo.name}</h2>
+          <p class="text-sm text-gray-300">${ngo.description}</p>
+          <button class="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg" onclick="window.open('${ngo.website}', '_blank')">Donate</button>
+        `;
+        container.appendChild(card);
+      });
+
+      document.getElementById("toggleButton").style.display = input ? "none" : "block";
+    }
+
+  function makePayment() {
+    const name = document.getElementById("name").value.trim();
+    const amount = document.getElementById("amount").value.trim();
+
+    if (name === "" || amount === "") {
+      alert("Please enter both your name and donation amount.");
+    } else {
+      // Optionally validate amount is a number and greater than 0
+      const amt = parseFloat(amount);
+      if (isNaN(amt) || amt <= 0) {
+        alert("Please enter a valid donation amount.");
+        return;
+      }
+
+      // You can dynamically pass name or amount to Razorpay later if using full API
+      location.href = "https://rzp.io/rzp/mVgnpgd0";
+    }
+  }
+
+    renderNGOs();
+  </script>
+
+</body>
+</html>

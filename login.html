@@ -30,7 +30,7 @@
         </h2>
         <p class="mt-2 text-center text-sm text-gray-400">
           Or
-          <a href="register.html" class="font-medium text-pink-400 hover:text-pink-300">
+          <a href="/store/register.html" class="font-medium text-pink-400 hover:text-pink-300">
             create a new account
           </a>
         </p>
@@ -172,11 +172,11 @@
         localStorage.setItem('users', JSON.stringify(updatedUsers));
         
         if (user.isStoreAdmin) {
-          window.location.href = 'store-admin.html';
+          window.location.href = '/store/store-admin.html';
         } else if (user.isEntrepreneur) {
-          window.location.href = 'admin.html';
+          window.location.href = '/store/admin.html';
         } else {
-          window.location.href = 'index.html';
+          window.location.href = '/store/store.html';
         }
       } else {
         console.log('Login failed. Users in storage:', users);

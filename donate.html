@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate - Sponsor a Dream</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #000, #1a1a1a);
+      color: white;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start">
+
+  <!-- Main Donate Section -->
+  <section class="w-full max-w-4xl text-center mt-10 px-4 fade-in">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-pink-400">Sponsor a Dream</h1>
+    <p class="text-lg md:text-xl text-purple-200 mb-6">Empower a girl in rural India with technology. Your donation funds a Tech Starter Kit – including a tablet, learning materials, and internet access – helping her build a brighter future.</p>
+
+    <!-- Donation Tiers -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
+      <div class="glass p-6 rounded-xl">
+        <h3 class="text-xl font-bold mb-2 text-pink-400">₹500</h3>
+        <p class="text-sm">Contributes to learning materials & internet access.</p>
+      </div>
+      <div class="glass p-6 rounded-xl">
+        <h3 class="text-xl font-bold mb-2 text-pink-400">₹1500</h3>
+        <p class="text-sm">Covers partial cost of a tablet device.</p>
+      </div>
+      <div class="glass p-6 rounded-xl">
+        <h3 class="text-xl font-bold mb-2 text-pink-400">₹3000+</h3>
+        <p class="text-sm">Sponsor a complete Tech Starter Kit for one girl.</p>
+      </div>
+    </div>
+
+    <!-- Donate Button -->
+    <button id="donateBtn" onclick="btn()" class="mt-8 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold rounded-full hover:opacity-90 transition transform hover:scale-105">
+      Donate Now
+    </button>
+  </section>
+
+  <script>
+    function btn(){
+      window.location.href="donate-in.html";
+    }
+  </script>
+
+</body>
+</html>

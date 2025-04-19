@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empowerment Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .fade-up-delayed {
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    .fade-up-late {
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 1s;
+    }
+
+    .glow-button {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .glow-button:hover {
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-black via-gray-900 to-black text-white min-h-screen flex items-center justify-center px-4">
+
+  <div class="text-center max-w-3xl fade-up">
+    <h1 class="text-5xl font-extrabold mb-4 text-white">Empowerment Store</h1>
+    <p class="text-lg text-gray-300 mb-8 leading-relaxed fade-up-delayed">
+      Discover tools, crafts, and tech kits created to fuel the dreams of young rural girls.
+      Your support helps bridge the gap between potential and possibility.
+    </p>
+
+    <!-- Featured Empowerment Items -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10 fade-up-late">
+      <div class="bg-gray-800 p-6 rounded-xl shadow-xl hover:scale-105 transition-transform">
+        <h3 class="text-xl font-bold mb-2 text-white">Tech Starter Kit</h3>
+        <p class="text-gray-400 text-sm">Includes tablet, internet access & learning resources for girls in tech.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow-xl hover:scale-105 transition-transform">
+        <h3 class="text-xl font-bold mb-2 text-white">Handmade Crafts</h3>
+        <p class="text-gray-400 text-sm">Support self-reliant women selling handmade eco-friendly crafts.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow-xl hover:scale-105 transition-transform">
+        <h3 class="text-xl font-bold mb-2 text-white">Skill Development Kits</h3>
+        <p class="text-gray-400 text-sm">Kits that teach coding, sewing, leadership & entrepreneurship.</p>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <a href="login.html" class="inline-block bg-white text-black font-bold py-3 px-10 rounded-full glow-button text-lg transition">
+      Enter the Store
+    </a>
+  </div>
+
+</body>
+</html>
