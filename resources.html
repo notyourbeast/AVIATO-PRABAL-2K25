@@ -25,6 +25,11 @@
         background-color: #111827;
         color: #e5e7eb;
       }
+      #scholarships-container > div:hover {
+        transform: scale(1.03);
+        border: 2px solid #06b6d4; /* cyan-500 */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
     </style>
   </head>
   <body class="font-sans">
@@ -185,101 +190,11 @@
           Scholarships for Girls
         </h2>
 
-        <div class="grid md:grid-cols-2 gap-6" id="scholarships-container">
+        <div class="grid md:grid-cols-2 gap-6" id="scholarships-container" 
+            style="transform-origin: center; transition: all 0.3s ease-in-out;">
           <!-- Scholarships will be loaded here by JavaScript -->
         </div>
       </section>
-
-      <!-- Jobs Section -->
-      <!-- Update your jobs section in index.html -->
-      <!-- <section id="jobs" class="mb-20 py-8 border-t border-gray-700">
-        <h2 class="text-3xl font-bold mb-8 text-center text-purple-300">
-          Job Opportunities
-        </h2>
-
-        <div
-          class="bg-gray-800 p-6 rounded-lg shadow-md mb-8 border border-gray-700"
-        >
-          <div class="grid md:grid-cols-3 gap-6">
-            <div>
-              <label
-                for="job-type-filter"
-                class="block text-sm font-medium text-gray-300 mb-1"
-                >Job Type</label
-              >
-              <select
-                id="job-type-filter"
-                class="w-full p-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300"
-              >
-                <option value="all">All Types</option>
-                <option value="fulltime">Full-time</option>
-                <option value="parttime">Part-time</option>
-                <option value="contract">Contract</option>
-                <option value="internship">Internship</option>
-                <option value="temporary">Temporary</option>
-              </select>
-            </div>
-            <div>
-              <label
-                for="job-location"
-                class="block text-sm font-medium text-gray-300 mb-1"
-                >Location</label
-              >
-              <input
-                type="text"
-                id="job-location"
-                placeholder="City or ZIP code"
-                class="w-full p-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300"
-              />
-            </div>
-            <div>
-              <label
-                for="search-jobs"
-                class="block text-sm font-medium text-gray-300 mb-1"
-                >Keywords</label
-              >
-              <div class="flex">
-                <input
-                  type="text"
-                  id="search-jobs"
-                  placeholder="Job title or keywords"
-                  class="w-full p-2 border border-gray-700 rounded-l-md bg-gray-900 text-gray-300"
-                />
-                <button
-                  id="search-jobs-btn"
-                  class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-r-md"
-                >
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-4 flex justify-between items-center">
-          <h3 class="text-xl font-semibold text-purple-300">Job Listings</h3>
-          <div id="job-results-count" class="text-gray-400 text-sm">
-            0 jobs found
-          </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6" id="jobs-container">
-          Jobs will be loaded here by JavaScript -->
-          <!-- <div class="text-center py-8 text-gray-400" id="jobs-loading">
-            <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
-            <p>Loading job listings...</p>
-          </div>
-        </div>
-
-        <div class="mt-8 flex justify-center">
-          <button
-            id="load-more-jobs"
-            class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-md border border-gray-700 hidden"
-          >
-            Load More Jobs
-          </button>
-        </div>
-      </section> -->
 
       <div
         id="job-search"

@@ -22,6 +22,12 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease-in-out;
+    }
+    .glass:hover {
+      transform: scale(1.03);
+      border-color: #06b6d4;
+      box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
     }
     .fade-in {
       animation: fadeIn 2s ease-in-out;
@@ -43,6 +49,15 @@
     }
     .hover-scale:hover {
       transform: scale(1.03);
+    }
+    .card-hover {
+      transition: all 0.3s ease-in-out;
+      transform-origin: center;
+    }
+    .card-hover:hover {
+      transform: scale(1.03);
+      border-color: #06b6d4;
+      box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
     }
   </style>
 </head>
@@ -78,7 +93,6 @@
         <a href="#programs" class="text-blue-300 hover:text-white transition">Programs</a>
         <a href="#stories" class="text-blue-300 hover:text-white transition">Success Stories</a>
       </div>
-      
     </div>
   </nav>
 
@@ -123,7 +137,7 @@
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass p-8 rounded-xl hover-scale fade-in">
+        <div class="glass p-8 rounded-xl hover-scale fade-in card-hover">
           <div class="text-blue-400 text-4xl mb-4">
             <i class="fas fa-laptop-code"></i>
           </div>
@@ -133,7 +147,7 @@
           </p>
         </div>
         
-        <div class="glass p-8 rounded-xl hover-scale fade-in" style="animation-delay: 0.2s">
+        <div class="glass p-8 rounded-xl hover-scale fade-in card-hover" style="animation-delay: 0.2s">
           <div class="text-blue-400 text-4xl mb-4">
             <i class="fas fa-rupee-sign"></i>
           </div>
@@ -143,7 +157,7 @@
           </p>
         </div>
         
-        <div class="glass p-8 rounded-xl hover-scale fade-in" style="animation-delay: 0.4s">
+        <div class="glass p-8 rounded-xl hover-scale fade-in card-hover" style="animation-delay: 0.4s">
           <div class="text-blue-400 text-4xl mb-4">
             <i class="fas fa-hands-helping"></i>
           </div>
@@ -171,59 +185,58 @@
         </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" style="width: 100%; height: 100%;"> <!-- Reduced gap from gap-8 to gap-6 -->
         <!-- Program 1 -->
-        <div class="glass p-6 rounded-xl hover-scale fade-in">
-          <div class="relative overflow-hidden rounded-lg h-48 mb-4">
+        <div class="glass p-5 rounded-xl hover-scale fade-in card-hover" style="width: 95%; height: 95%;"> <!-- Reduced size to 95% -->
+          <div class="relative overflow-hidden rounded-lg h-40 mb-3"> <!-- Reduced height from h-48 to h-40 -->
             <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
                  alt="Digital Literacy" 
                  class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-            <div class="absolute bottom-0 left-0 p-4">
-              <h3 class="text-xl font-bold text-white">Digital Literacy</h3>
+            <div class="absolute bottom-0 left-0 p-3"> <!-- Reduced padding from p-4 to p-3 -->
+              <h3 class="text-lg font-bold text-white">Digital Literacy</h3> <!-- Reduced text size from xl to lg -->
             </div>
           </div>
-          <p class="text-blue-200 mb-4">
+          <p class="text-blue-200 mb-3 text-sm"> <!-- Reduced text size and margin -->
             Master smartphones, internet, and essential digital tools to navigate the modern world.
           </p>
-          <a href="community.html" class="text-blue-400 hover:text-blue-300 font-medium">Learn More →</a>
+          <a href="community.html" class="text-blue-400 hover:text-blue-300 text-sm font-medium">Learn More →</a> <!-- Reduced text size -->
         </div>
         
         <!-- Program 2 -->
-        <div class="glass p-6 rounded-xl hover-scale fade-in" style="animation-delay: 0.2s">
-          <div class="relative overflow-hidden rounded-lg h-48 mb-4">
+        <div class="glass p-5 rounded-xl hover-scale fade-in card-hover" style="animation-delay: 0.2s; width: 95%; height: 95%;">
+          <div class="relative overflow-hidden rounded-lg h-40 mb-3">
             <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
                  alt="Financial Skills" 
                  class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-            <div class="absolute bottom-0 left-0 p-4">
-              <h3 class="text-xl font-bold text-white">Financial Skills</h3>
+            <div class="absolute bottom-0 left-0 p-3">
+              <h3 class="text-lg font-bold text-white">Financial Skills</h3>
             </div>
           </div>
-          <p class="text-blue-200 mb-4">
+          <p class="text-blue-200 mb-3 text-sm">
             Learn banking, savings, budgeting, and digital payments for financial independence.
           </p>
-          <a href="learning.html" class="text-blue-400 hover:text-blue-300 font-medium">Learn More →</a>
+          <a href="learning.html" class="text-blue-400 hover:text-blue-300 text-sm font-medium">Learn More →</a>
         </div>
         
         <!-- Program 3 -->
-        <div class="glass p-6 rounded-xl hover-scale fade-in" style="animation-delay: 0.4s">
-          <div class="relative overflow-hidden rounded-lg h-48 mb-4">
+        <div class="glass p-5 rounded-xl hover-scale fade-in card-hover" style="animation-delay: 0.4s; width: 95%; height: 95%;">
+          <div class="relative overflow-hidden rounded-lg h-40 mb-3">
             <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
                  alt="Entrepreneurship" 
                  class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-            <div class="absolute bottom-0 left-0 p-4">
-              <h3 class="text-xl font-bold text-white">Entrepreneurship</h3>
+            <div class="absolute bottom-0 left-0 p-3">
+              <h3 class="text-lg font-bold text-white">Entrepreneurship</h3>
             </div>
           </div>
-          <p class="text-blue-200 mb-4">
+          <p class="text-blue-200 mb-3 text-sm">
             Start and grow your own business with our comprehensive entrepreneurship training.
           </p>
-          <a href="store-landing.html" class="text-blue-400 hover:text-blue-300 font-medium">Learn More →</a>
+          <a href="store-landing.html" class="text-blue-400 hover:text-blue-300 text-sm font-medium">Learn More →</a>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- Success Stories -->
@@ -243,7 +256,7 @@
       
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Story 1 -->
-        <div class="glass p-6 rounded-xl hover-scale fade-in" style="animation-delay: 0.2s">
+        <div class="glass p-6 rounded-xl hover-scale fade-in card-hover" style="animation-delay: 0.2s">
             <div class="flex items-center mb-4">
               <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-400">
                 <img src="https://tse1.mm.bing.net/th?id=OIP.nlrqX_nEgkgHG23T41Tw_AHaE8&pid=Api&P=0&h=180" alt="Shradha Khapra" class="w-full h-full object-cover">
@@ -275,7 +288,7 @@
             </div>
           </div>
         
-          <div class="glass p-6 rounded-xl hover-scale fade-in" style="animation-delay: 0.4s">
+          <div class="glass p-6 rounded-xl hover-scale fade-in card-hover" style="animation-delay: 0.4s">
             <div class="flex items-center mb-4">
               <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-400">
                 <img src="https://tse2.mm.bing.net/th?id=OIP.PmB8KTa9gAaCI-RO-o-yQQHaHa&pid=Api&P=0&h=180" class="w-full h-full object-cover">
@@ -308,7 +321,7 @@
           </div>
         
         <!-- Story 3 -->
-        <div class="glass p-6 rounded-xl hover-scale fade-in" style="animation-delay: 0.6s">
+        <div class="glass p-6 rounded-xl hover-scale fade-in card-hover" style="animation-delay: 0.6s">
             <div class="flex items-center mb-4">
               <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-400">
                 <img src="https://tse1.mm.bing.net/th?id=OIP.MDggBBXpXSa-J5NPlX4MVgHaEK&pid=Api&P=0&h=180" alt="Falguni Nayar" class="w-full h-full object-cover">
@@ -339,11 +352,13 @@
               </div>
             </div>
           </div>
+      </div>
+    </div>
   </section>
 
   <!-- Call to Action -->
   <section class="py-20 px-4 sm:px-6 lg:px-8 text-center">
-    <div class="glass max-w-4xl mx-auto p-12 rounded-xl relative overflow-hidden">
+    <div class="glass max-w-4xl mx-auto p-12 rounded-xl relative overflow-hidden card-hover">
       <div class="absolute -z-10 inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-10"></div>
       <h2 class="text-3xl font-bold mb-6 text-white">Ready to Transform Lives?</h2>
       <p class="text-xl text-blue-200 mb-8 max-w-2xl mx-auto">
@@ -359,7 +374,6 @@
       </div>
     </div>
   </section>
-
 
   <script>
     // Smooth scrolling for anchor links
