@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerHer - Community Stories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reuse all animations and styles from main page */
+        :root {
+            --primary: #7c3aed;
+            --secondary: #a78bfa;
+            --accent: #f472b6;
+            --dark: #0f172a;
+            --darker: #020617;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+        }
+        
+        /* Card animations */
+        .card-hover-3d {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1);
+            transform-style: preserve-3d;
+        }
+        
+        .card-hover-3d:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.03);
+            box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.3);
+        }
+        
+        /* Story card specific */
+        .story-card {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in forwards;
+            animation-play-state: paused;
+        }
+        
+        .slide-in {
+            animation: slideIn 0.8s ease-out forwards;
+            animation-play-state: paused;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Button styles matching main page */
+        .btn-magnetic {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .btn-magnetic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            z-index: -1;
+            transition: all 0.5s ease;
+            opacity: 1;
+        }
+        
+        .btn-magnetic:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+        }
+        
+        .btn-magnetic:hover::before {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        
+        /* Image preview */
+        .image-preview {
+            display: none;
+            transition: all 0.3s ease;
+        }
+        
+        .image-preview.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        /* Medium feed cards */
+        .medium-card {
+            border-left: 4px solid #00ab6c;
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+    <!-- Navigation (identical to main page) -->
+    <nav class="backdrop-blur-md bg-opacity-80 bg-slate-900 border-b border-slate-800 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-2xl font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Empower<span class="text-white">Her</span></a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="index.html" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="stories.html" class="text-white px-3 py-2 rounded-md text-sm font-medium bg-purple-600">Community Stories</a>
+                        <a href="inspiration.html" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Inspiration Wall</a>
+                        <a href="mentorship.html" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mentorship</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="mentorship.html#mentor-form" class="text-slate-300 hover:text-white px-4 py-2 rounded-full text-sm font-medium border border-purple-500 hover:bg-purple-900 hover:bg-opacity-30 transition-colors">Become a Mentor</a>
+                    <a href="mentorship.html#request-form" class="btn-magnetic px-4 py-2 rounded-full text-sm font-medium">Request a Mentor</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-slate-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-slate-900 border-t border-slate-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="stories.html" class="text-white block px-3 py-2 rounded-md text-base font-medium bg-purple-600">Community Stories</a>
+                <a href="inspiration.html" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Inspiration Wall</a>
+                <a href="mentorship.html" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Mentorship</a>
+                <div class="pt-4">
+                    <a href="mentorship.html#mentor-form" class="text-slate-300 hover:text-white w-full text-sm px-4 py-2 rounded-full font-medium mb-2 border border-purple-500 block text-center">Become a Mentor</a>
+                    <a href="mentorship.html#request-form" class="btn-magnetic w-full text-sm px-4 py-2 rounded-full font-medium block text-center">Request a Mentor</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80')] bg-cover bg-center">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-purple-900 opacity-90"></div>
+        <div class="max-w-7xl mx-auto relative z-10 text-center slide-in">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Community Stories</h1>
+            <p class="text-xl text-slate-300 max-w-2xl mx-auto">Real journeys from real heroes.</p>
+        </div>
+        
+        <!-- Floating orbs from main page -->
+        <div class="absolute -top-20 -left-20 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+    </section>
+
+    <!-- Stories Grid -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-2xl font-bold text-white mb-8 slide-in">Featured Stories</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Story Card 1 -->
+                <div class="story-card rounded-xl p-6 card-hover-3d fade-in cursor-pointer" onclick="openStoryModal('story1')" style="animation-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center overflow-hidden">
+                            <img src="../hack/istockphoto-1217542025-612x612.jpg" alt="Profile" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-white font-medium">Priya Sharma</h3>
+                            <p class="text-slate-400 text-sm">Rampur Village</p>
+                        </div>
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-2">From Clay to Confidence</h4>
+                    <p class="text-slate-400 mb-4">How pottery transformed my life and gave me financial independence...</p>
+                    <button class="text-purple-400 hover:text-purple-300 font-medium inline-flex items-center group">
+                        Read More <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </button>
+                </div>
+
+                <!-- Story Card 2 -->
+                <div class="story-card rounded-xl p-6 card-hover-3d fade-in cursor-pointer" onclick="openStoryModal('story2')" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Profile" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-white font-medium">Sunita Devi</h3>
+                            <p class="text-slate-400 text-sm">Bilaspur Village</p>
+                        </div>
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-2">Breaking Barriers in Tech</h4>
+                    <p class="text-slate-400 mb-4">My journey from village school to software developer...</p>
+                    <button class="text-purple-400 hover:text-purple-300 font-medium inline-flex items-center group">
+                        Read More <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </button>
+                </div>
+
+                <!-- Story Card 3 -->
+                <div class="story-card rounded-xl p-6 card-hover-3d fade-in cursor-pointer" onclick="openStoryModal('story3')" style="animation-delay: 0.3s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Profile" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-white font-medium">Meena Kumari</h3>
+                            <p class="text-slate-400 text-sm">Jharkhand Village</p>
+                        </div>
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-2">The Weaver's Daughter</h4>
+                    <p class="text-slate-400 mb-4">Preserving traditional crafts while building a modern business...</p>
+                    <button class="text-purple-400 hover:text-purple-300 font-medium inline-flex items-center group">
+                        Read More <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Medium Feed Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 bg-slate-900 bg-opacity-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-2xl font-bold text-white mb-8 slide-in">Inspiring Reads from Medium</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Medium Card 1 -->
+                <div class="story-card medium-card rounded-xl p-6 card-hover-3d fade-in" style="animation-delay: 0.4s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-600 to-green-400 flex items-center justify-center overflow-hidden">
+                            <img src="https://miro.medium.com/v2/resize:fill:64:64/1*sHhtYhaCe2Uc3IU0IgKwIQ.png" alt="Medium" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-white font-medium">Medium Digest</h3>
+                            <p class="text-slate-400 text-sm">Women in Tech</p>
+                        </div>
+                    </div>
+                    <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*K9U9G8Mk3XQLhAeB7Qk-Sw.jpeg" alt="Article" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-white mb-2">How Rural Women Are Leading India's Tech Revolution</h4>
+                    <p class="text-slate-400 mb-4">Meet the women from villages who are breaking stereotypes and coding their way to success...</p>
+                    <a href="https://medium.com/@womenintech/how-rural-women-are-leading-indias-tech-revolution-5a1b3c8d7e2f" target="_blank" class="text-green-400 hover:text-green-300 font-medium inline-flex items-center group">
+                        Read on Medium <i class="fas fa-external-link-alt ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Medium Card 2 -->
+                <div class="story-card medium-card rounded-xl p-6 card-hover-3d fade-in" style="animation-delay: 0.5s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-600 to-green-400 flex items-center justify-center overflow-hidden">
+                            <img src="https://miro.medium.com/v2/resize:fill:64:64/1*TGH72Dn2Dn5jK1t4xXZ-3A.png" alt="Medium" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-white font-medium">Empowerment Stories</h3>
+                            <p class="text-slate-400 text-sm">Social Impact</p>
+                        </div>
+                    </div>
+                    <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*V5kSBsWl3Q4Qq1ZQ6Q9Z2Q.jpeg" alt="Article" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-white mb-2">The Silent Revolution: Education in Rural India</h4>
+                    <p class="text-slate-400 mb-4">How digital literacy programs are transforming lives in remote villages...</p>
+                    <a href="https://medium.com/@socialimpact/the-silent-revolution-education-in-rural-india-3e4f5a6b7c8d" target="_blank" class="text-green-400 hover:text-green-300 font-medium inline-flex items-center group">
+                        Read on Medium <i class="fas fa-external-link-alt ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Medium Card 3 -->
+                <div class="story-card medium-card rounded-xl p-6 card-hover-3d fade-in" style="animation-delay: 0.6s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-600 to-green-400 flex items-center justify-center overflow-hidden">
+                            <img src="https://miro.medium.com/v2/resize:fill:64:64/1*F6OZ7G8f9Q0Q1Q2Q3Q4Q5Q.png" alt="Medium" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-white font-medium">Village Entrepreneurs</h3>
+                            <p class="text-slate-400 text-sm">Business</p>
+                        </div>
+                    </div>
+                    <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*G6H7I8J9K0L1M2N3O4P5Q.jpeg" alt="Article" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-white mb-2">From Kitchen to Marketplace: Rural Women Entrepreneurs</h4>
+                    <p class="text-slate-400 mb-4">How homemade products are becoming global brands through e-commerce...</p>
+                    <a href="https://medium.com/@villagestories/from-kitchen-to-marketplace-rural-women-entrepreneurs-9a0b1c2d3e4f" target="_blank" class="text-green-400 hover:text-green-300 font-medium inline-flex items-center group">
+                        Read on Medium <i class="fas fa-external-link-alt ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submit Story CTA -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center fade-in" style="animation-delay: 0.7s;">
+            <h2 class="text-3xl font-bold text-white mb-4">Share Your Story</h2>
+            <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">Your journey could inspire the next generation of rural heroes</p>
+            <button id="open-story-form" class="btn-magnetic px-6 py-3 rounded-full font-medium hover:scale-105 transition-transform">
+                <i class="fas fa-plus mr-2"></i> Submit Your Story
+            </button>
+        </div>
+    </section>
+
+    <!-- Story Detail Modal -->
+    <div id="story-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 hidden">
+        <div class="bg-slate-800 bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-700 card-hover-3d">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 id="modal-story-title" class="text-2xl font-bold text-white mb-2">From Clay to Confidence</h2>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center overflow-hidden mr-3">
+                                <img id="modal-story-image" src="https://randomuser.me/api/portraits/women/42.jpg" alt="Profile" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h3 id="modal-story-author" class="text-white font-medium">Priya Sharma</h3>
+                                <p id="modal-story-location" class="text-slate-400 text-sm">Rampur Village • 22 years</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="closeStoryModal()" class="text-slate-400 hover:text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div id="modal-story-content" class="text-slate-300 mb-8 space-y-4">
+                    <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pottery work" class="w-full rounded-lg my-4">
+                    
+                    <p>Growing up in Rampur village, I never imagined that the clay I played with as a child would become my path to financial independence. Like most girls in my village, I was expected to marry young and focus on household duties.</p>
+                    
+                    <p>Everything changed when I attended an EmpowerHer workshop on traditional crafts. The mentor, Mrs. Gupta, saw potential in my simple clay figurines and encouraged me to develop my skills. She connected me with online marketplaces and taught me how to price my work.</p>
+                    
+                    <p>Today, I run a small pottery business that employs six other women from my village. We've preserved our traditional designs while adapting to modern tastes. Last year, we exported our products to three countries!</p>
+                    
+                    <p>EmpowerHer didn't just teach me a skill - it gave me the confidence to believe in my own potential. Now I mentor other young girls in my community, showing them that our rural roots can be our greatest strength.</p>
+                </div>
+                
+                <div class="border-t border-slate-700 pt-6">
+                    <h4 class="text-white font-medium mb-4">Inspired by this story?</h4>
+                    <div class="flex space-x-4">
+                        <button class="text-slate-300 hover:text-white px-4 py-2 rounded-lg font-medium border border-slate-600 hover:bg-slate-700 transition-colors">
+                            <i class="fab fa-facebook-f mr-2"></i> Share
+                        </button>
+                        <button class="text-slate-300 hover:text-white px-4 py-2 rounded-lg font-medium border border-slate-600 hover:bg-slate-700 transition-colors">
+                            <i class="fas fa-comment mr-2"></i> Comment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Story Form Modal -->
+    <div id="story-form-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 hidden">
+        <div class="bg-slate-800 bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-xl max-w-md w-full border border-slate-700 card-hover-3d">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-white">Share Your Story</h2>
+                    <button onclick="closeStoryFormModal()" class="text-slate-400 hover:text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <form id="story-submission-form" class="space-y-4">
+                    <div>
+                        <label for="story-name" class="block text-slate-300 mb-2">Full Name</label>
+                        <input type="text" id="story-name" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white" required>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="story-age" class="block text-slate-300 mb-2">Age</label>
+                            <input type="number" id="story-age" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white" required>
+                        </div>
+                        <div>
+                            <label for="story-village" class="block text-slate-300 mb-2">Village/Town</label>
+                            <input type="text" id="story-village" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="story-title" class="block text-slate-300 mb-2">Story Title</label>
+                        <input type="text" id="story-title" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white" placeholder="e.g., From Clay to Confidence" required>
+                    </div>
+                    
+                    <div>
+                        <label for="story-content" class="block text-slate-300 mb-2">Your Story</label>
+                        <textarea id="story-content" rows="5" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white" placeholder="Share your inspiring journey..." required></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="story-image" class="block text-slate-300 mb-2">Upload Image (Optional)</label>
+                        <input type="file" id="story-image" accept="image/*" class="hidden">
+                        <label for="story-image" class="w-full px-4 py-12 rounded-lg bg-slate-700 border-2 border-dashed border-slate-600 flex flex-col items-center justify-center cursor-pointer hover:border-purple-500 transition-colors">
+                            <i class="fas fa-camera text-3xl text-slate-500 mb-2"></i>
+                            <span class="text-slate-400">Click to upload image</span>
+                        </label>
+                        <div id="story-image-preview" class="mt-2 hidden">
+                            <img id="story-preview-image" src="#" alt="Preview" class="max-h-40 rounded-lg mx-auto">
+                            <button type="button" onclick="removeStoryImage()" class="text-red-400 text-sm mt-2 hover:text-red-300">
+                                <i class="fas fa-times mr-1"></i> Remove image
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <button type="submit" class="btn-magnetic w-full py-3 rounded-lg font-medium">
+                            <i class="fas fa-paper-plane mr-2"></i> Submit Story
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+        <div class="bg-slate-800 bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-xl p-8 max-w-md w-full border border-purple-500 card-hover-3d">
+            <div class="text-center">
+                <div class="w-20 h-20 bg-purple-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-check text-purple-400 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Thank You!</h3>
+                <p class="text-slate-400 mb-6">Your story has been submitted successfully!</p>
+                <button onclick="closeSuccessModal()" class="btn-magnetic px-6 py-2 rounded-lg font-medium">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (identical to main page) -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Empower<span class="text-white">Her</span></span>
+                    </div>
+                    <p class="text-slate-400 mb-4">
+                        Empowering women through mentorship and community support to achieve their professional and personal goals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors hover:scale-110">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors hover:scale-110">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors hover:scale-110">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-slate-400 hover:text-white transition-colors hover:pl-2 block">Home</a></li>
+                        <li><a href="stories.html" class="text-slate-400 hover:text-white transition-colors hover:pl-2 block">Community Stories</a></li>
+                        <li><a href="inspiration.html" class="text-slate-400 hover:text-white transition-colors hover:pl-2 block">Inspiration Wall</a></li>
+                        <li><a href="mentorship.html" class="text-slate-400 hover:text-white transition-colors hover:pl-2 block">Mentorship</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="text-slate-400 hover:text-white transition-colors cursor-pointer"><i class="fas fa-envelope mr-2"></i> hello@empowerher.com</li>
+                        <li class="text-slate-400 hover:text-white transition-colors cursor-pointer"><i class="fas fa-phone mr-2"></i> +1 (555) 123-4567</li>
+                        <li class="text-slate-400 hover:text-white transition-colors cursor-pointer"><i class="fas fa-map-marker-alt mr-2"></i> New Delhi, India</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-slate-500 text-sm mb-4 md:mb-0">
+                    &copy; 2023 EmpowerHer. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-slate-500 hover:text-slate-400 text-sm transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-slate-500 hover:text-slate-400 text-sm transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize animations on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.slide-in, .fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < window.innerHeight - 100) {
+                    element.style.animationPlayState = 'running';
+                }
+            });
+        }
+        
+        // Run on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Story modals
+        function openStoryModal(storyId) {
+            // In a real app, you would fetch story data based on storyId
+            document.getElementById('story-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeStoryModal() {
+            document.getElementById('story-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function openStoryFormModal() {
+            document.getElementById('story-form-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeStoryFormModal() {
+            document.getElementById('story-form-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            document.getElementById('story-submission-form').reset();
+            removeStoryImage();
+        }
+        
+        function showSuccessModal() {
+            document.getElementById('success-modal').classList.remove('hidden');
+        }
+        
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+        }
+        
+        // Image preview for story submission
+        document.getElementById('story-image').addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('story-preview-image').src = e.target.result;
+                    document.getElementById('story-image-preview').classList.remove('hidden');
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        
+        function removeStoryImage() {
+            document.getElementById('story-image').value = '';
+            document.getElementById('story-image-preview').classList.add('hidden');
+            document.getElementById('story-preview-image').src = '#';
+        }
+        
+        // Form submission
+        document.getElementById('story-submission-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real app, you would:
+            // 1. Upload image to Firebase Storage if provided
+            // 2. Save story data to Firestore (/stories collection)
+            // 3. Show success message
+            
+            // For demo purposes:
+            closeStoryFormModal();
+            showSuccessModal();
+            
+            // Reset form
+            this.reset();
+            removeStoryImage();
+        });
+        
+        // Open form when button clicked
+        document.getElementById('open-story-form').addEventListener('click', openStoryFormModal);
+        
+        // Close modals when clicking outside
+        document.getElementById('story-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeStoryModal();
+            }
+        });
+        
+        document.getElementById('story-form-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeStoryFormModal();
+            }
+        });
+        
+        document.getElementById('success-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSuccessModal();
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
