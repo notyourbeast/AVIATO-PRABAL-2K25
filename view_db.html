@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBPFb8uxZ2mLyVmv2d8JFPcmyBChc9LjkE",
+            authDomain: "women-empwr.firebaseapp.com",
+            projectId: "women-empwr",
+            storageBucket: "women-empwr.appspot.com",
+            messagingSenderId: "XXXXXXX",
+            appId: "1:230261281865:web:a5ad656bd1de125eafdb98"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function loadUsers() {
+            const querySnapshot = await getDocs(collection(db, "users"));
+            const tbody = document.querySelector('#usersTable tbody');
+            tbody.innerHTML = '';
+
+            querySnapshot.forEach((userDoc) => {
+                const user = userDoc.data();
+                const row = `
+                    <tr class="hover:bg-gray-50" data-uid="${user.uid}">
+                        <td class="p-2 border">
+                            <input value="${user.name}" class="w-full p-1 border rounded">
+                        </td>
+                        <td class="p-2 border">
+                            <input value="${user.email}" class="w-full p-1 border rounded">
+                        </td>
+                        <td class="p-2 border">
+                            <input type="number" value="${user.age}" class="w-full p-1 border rounded">
+                        </td>
+                        <td class="p-2 border">
+                            <select class="w-full p-1 border rounded">
+                                <option ${user.role === 'user' && 'selected'}>user</option>
+                                <option ${user.role === 'parent' && 'selected'}>parent</option>
+                            </select>
+                        </td>
+                        <td class="p-2 border">
+                            <button onclick="saveUser('${user.uid}')" 
+                                    class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                                Save
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        window.saveUser = async (uid) => {
+            const row = document.querySelector(`tr[data-uid="${uid}"]`);
+            const fields = row.querySelectorAll('input, select');
+            
+            const updatedData = {
+                name: fields[0].value,
+                email: fields[1].value,
+                age: parseInt(fields[2].value),
+                role: fields[3].value
+            };
+
+            try {
+                await updateDoc(doc(db, "users", uid), updatedData);
+                alert('User updated successfully!');
+                loadUsers();
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        };
+
+        // Load users when page loads
+        document.addEventListener('DOMContentLoaded', loadUsers);
+    </script>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-sm">
+        <h1 class="text-xl font-bold p-4 border-b">User Data Management</h1>
+        
+        <table id="usersTable" class="w-full">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="p-2 text-left">Name</th>
+                    <th class="p-2 text-left">Email</th>
+                    <th class="p-2 text-left">Age</th>
+                    <th class="p-2 text-left">Role</th>
+                    <th class="p-2 text-left">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
