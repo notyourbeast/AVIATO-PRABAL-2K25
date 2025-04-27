@@ -208,26 +208,7 @@ const schemesData = [
   },
 ];
 
-const scholarshipsData = [
-  {
-    id: 1,
-    name: "National Scholarship for Higher Education",
-    description: "For girls pursuing higher education in STEM fields",
-    eligibility: "Girls from BPL families",
 
-    link: "https://www.education.gov.in/scholarships-education-loan-0",
-    level: "undergraduate",
-  },
-  {
-    id: 2,
-    name: "Post Matric Scholarship for Girls",
-    description: "Scholarship for girls from minority communities",
-    eligibility: "Girls from minority communities with 50% marks",
-  
-    link: "https://mahadbt.maharashtra.gov.in/SchemeData/SchemeData?str=E9DDFA703C38E51A739268F02CEC37EC",
-    level: "school",
-  },
-];
 
 const jobsData = [
   {

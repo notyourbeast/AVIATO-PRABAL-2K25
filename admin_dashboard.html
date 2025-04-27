@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* CSS Variables for theming */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --card-bg: #f9fafb;
+      --border-color: #e5e7eb;
+      --sidebar-bg: #1e293b;
+      --sidebar-text: #f8fafc;
+      --hover-bg: #374151;
+    }
+
+    /* Dark mode variables */
+    .dark-mode {
+      --bg-color: #0f172a;  /* Dark blue background */
+      --text-color: #f8fafc; /* Light text */
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      --sidebar-bg: #020617;
+      --sidebar-text: #e2e8f0;
+      --hover-bg: #475569;
+    }
+
+    /* Base styles */
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Sidebar styling */
+    .sidebar {
+      background-color: var(--sidebar-bg);
+      color: var(--sidebar-text);
+    }
+
+    /* Sidebar buttons */
+    .sidebar button, .sidebar a {
+      transition: background-color 0.2s ease;
+    }
+    .sidebar button:hover, .sidebar a:hover {
+      background-color: var(--hover-bg);
+    }
+
+    /* Iframe styling */
+    iframe {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease;
+    }
+
+    /* Dark mode toggle button */
+    #darkModeToggle {
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+    #darkModeToggle:hover {
+      filter: brightness(90%);
+    }
+  </style>
+</head>
+<body class="flex h-screen">
+  <!-- Sidebar -->
+  <div class="sidebar w-1/5 p-4 space-y-4">
+    <h2 class="text-2xl font-bold mb-6">Admin Panel</h2>
+    <button onclick="loadPage('')" class="w-full text-left p-2 rounded">View/Edit DB</button>
+    <button onclick="loadPage('national_view.html')" class="w-full text-left p-2 rounded">National Eligible Users</button>
+    <button onclick="loadPage('post_view.html')" class="w-full text-left p-2 rounded">National Eligible Users</button>
+    <button onclick="loadPage('password_converter1.php')" class="w-full text-left p-2 rounded">Password Converter</button>
+    <!-- Add to admin dashboard page -->
+    <button onclick="adminLogout()" class="logout-btn">Logout</button>
+  </div>
+
+  <!-- Content Iframe -->
+  <div class="w-4/5 h-full">
+    <iframe id="contentFrame" class="w-full h-full" src="" frameborder="0"></iframe>
+  </div>
+
+  <!-- Dark Mode Toggle -->
+  <button id="darkModeToggle" class="fixed top-4 right-4 p-2 rounded-full shadow-lg">
+    <span id="darkModeIcon">🌙</span> Toggle Mode
+  </button>
+
+  <script>
+    // Initialize dark mode
+    function initDarkMode() {
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      const currentMode = localStorage.getItem('darkMode') || 
+                         (prefersDarkScheme.matches ? 'dark' : 'light');
+      setDarkMode(currentMode === 'dark');
+    }
+
+    // Set dark mode state
+    function setDarkMode(isDark) {
+      // Toggle class on document element
+      document.documentElement.classList.toggle('dark-mode', isDark);
+      localStorage.setItem('darkMode', isDark ? 'dark' : 'light');
+      
+      // Update iframe content
+      updateIframeTheme(isDark);
+      
+      // Update button icon
+      const icon = isDark ? '☀️' : '🌙';
+      document.getElementById('darkModeIcon').textContent = icon;
+    }
+
+    // Update iframe theme
+    function updateIframeTheme(isDark) {
+      const iframe = document.getElementById('contentFrame');
+      if (!iframe.contentWindow) return;
+      
+      try {
+        // Post message to iframe with full theme configuration
+        iframe.contentWindow.postMessage({
+          type: 'THEME_UPDATE',
+          isDark: isDark,
+          theme: {
+            bgColor: isDark ? '#0f172a' : '#ffffff',
+            textColor: isDark ? '#f8fafc' : '#333333',
+            cardBg: isDark ? '#1e293b' : '#f9fafb',
+            borderColor: isDark ? '#334155' : '#e5e7eb'
+          }
+        }, '*');
+        
+        // Also set data attribute
+        iframe.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      } catch (e) {
+        console.log("Theme sync with iframe failed:", e);
+      }
+    }
+
+    // Load page into iframe with theme support
+    function loadPage(page) {
+      const iframe = document.getElementById('contentFrame');
+      iframe.src = page;
+      
+      iframe.onload = function() {
+        const isDark = document.documentElement.classList.contains('dark-mode');
+        updateIframeTheme(isDark);
+        
+        // Additional check after short delay to ensure content is ready
+        setTimeout(() => {
+          updateIframeTheme(isDark);
+        }, 500);
+      };
+    }
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      initDarkMode();
+      
+      // Toggle handler
+      document.getElementById('darkModeToggle').addEventListener('click', function() {
+        const isDark = !document.documentElement.classList.contains('dark-mode');
+        setDarkMode(isDark);
+      });
+    });
+
+    // Listen for messages from iframes
+    window.addEventListener('message', function(event) {
+      if (event.data.type === 'THEME_REQUEST') {
+        const isDark = document.documentElement.classList.contains('dark-mode');
+        updateIframeTheme(isDark);
+      }
+    });
+    // Add this script to the top of your admin dashboard page
+      document.addEventListener('DOMContentLoaded', function() {
+          // Check session storage
+          if (!sessionStorage.getItem('adminLoggedIn')) {
+              window.location.href = 'admin_login.html';
+          }
+      });
+
+      // For logout functionality
+      function adminLogout() {
+          sessionStorage.removeItem('adminLoggedIn');
+          window.location.href = 'admin_login.html';
+      }
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+  <form id="loginForm" class="bg-white p-8 rounded shadow-md w-80">
+    <h2 class="text-xl font-semibold mb-6 text-center">Admin Login</h2>
+    <div id="errorMessage" class="text-red-500 hidden"></div>
+    <input type="text" id="username" placeholder="Username" class="w-full p-2 border mb-4 rounded" required>
+    <input type="password" id="password" placeholder="Password" class="w-full p-2 border mb-4 rounded" required>
+    <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Login</button>
+  </form>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorElement = document.getElementById('errorMessage');
+
+      // Simple credential validation
+      if (username === "admin123" && password === "admin@123") {
+        // Store session in localStorage (not secure for production!)
+        sessionStorage.setItem('adminLoggedIn', 'true');
+        window.location.href = 'admin_dashboard.html';
+      } else {
+        errorElement.textContent = 'Invalid credentials';
+        errorElement.classList.remove('hidden');
+        setTimeout(() => {
+          errorElement.classList.add('hidden');
+        }, 3000);
+      }
+    });
+
+    // Check session on page load
+    if (sessionStorage.getItem('adminLoggedIn')) {
+      window.location.href = 'admin_dashboard.html';
+    }
+  </script>
+</body>
+</html>

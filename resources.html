@@ -190,10 +190,71 @@
           Scholarships for Girls
         </h2>
 
-        <div class="grid md:grid-cols-2 gap-6" id="scholarships-container" 
-            style="transform-origin: center; transition: all 0.3s ease-in-out;">
-          <!-- Scholarships will be loaded here by JavaScript -->
+        <div class="grid md:grid-cols-2 gap-6" >
+          <!-- National Scholarship Card -->
+          <div 
+            class="group relative p-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-2xl hover:shadow-3xl cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden"
+            onclick="window.location.href='national_scholarship.html'">
+            
+            <!-- Shine effect on hover -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300 bg-gradient-to-r from-white/30 via-white/10 to-transparent"></div>
+            
+            <div class="relative z-10">
+              <!-- Icon -->
+              <div class="w-12 h-12 mb-4 bg-white/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+              </div>
+        
+              <h3 class="text-2xl font-bold text-white mb-3">National Scholarship for Higher Education</h3>
+              <p class="text-blue-100 mb-4">For girls pursuing higher education in STEM fields</p>
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <p class="text-sm font-medium text-blue-50">
+                  <span class="text-white/80">Eligibility:</span> Girls from BPL families
+                </p>
+              </div>
+            </div>
+          </div>
+        
+          <!-- Post Matric Scholarship Card -->
+          <div 
+            class="group relative p-8 bg-gradient-to-br from-pink-600 to-purple-700 rounded-2xl shadow-2xl hover:shadow-3xl cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden"
+            onclick="window.location.href='post_scholarship.html'">
+            
+            <!-- Shine effect on hover -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300 bg-gradient-to-r from-white/30 via-white/10 to-transparent"></div>
+            
+            <div class="relative z-10">
+              <!-- Icon -->
+              <div class="w-12 h-12 mb-4 bg-white/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+              </div>
+        
+              <h3 class="text-2xl font-bold text-white mb-3">Post Matric Scholarship for Girls</h3>
+              <p class="text-pink-100 mb-4">Scholarship for girls from minority communities</p>
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <p class="text-sm font-medium text-purple-50">
+                  <span class="text-white/80">Eligibility:</span> Girls from minority communities with 50% marks
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+        
+        <style>
+          /* Add custom shine animation */
+          @keyframes shine {
+            from { left: -25% }
+            to { left: 125% }
+          }
+          
+          .group:hover .shine-overlay {
+            animation: shine 1.5s ease-out;
+          }
+        </style>
       </section>
 
       <div

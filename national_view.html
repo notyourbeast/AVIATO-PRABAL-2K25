@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Scholarship Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <style>
+        .notification {
+            transition: all 0.3s ease-in-out;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Notification Container -->
+    <div id="notification" class="notification fixed bottom-4 right-4 p-4 rounded-lg shadow-lg text-white hidden"></div>
+
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">National Scholarship Applications</h1>
+        <div class="bg-white rounded-lg shadow overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Full Name</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Phone</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Education Level</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Previous %</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Income</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Eligibility</th>
+                    </tr>
+                </thead>
+                <tbody id="applicationsBody" class="bg-white divide-y divide-gray-200">
+                    <!-- Applications will be populated here -->
+                </tbody>
+            </table>
+        </div>
+        <button id="saveAll" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Save All Changes
+        </button>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBPFb8uxZ2mLyVmv2d8JFPcmyBChc9LjkE",
+            authDomain: "women-empwr.firebaseapp.com",
+            projectId: "women-empwr",
+            storageBucket: "women-empwr.appspot.com",
+            messagingSenderId: "XXXXXXX",
+            appId: "1:230261281865:web:a5ad656bd1de125eafdb98"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Notification handler
+        function showNotification(message, isSuccess = true) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification fixed bottom-4 right-4 p-4 rounded-lg shadow-lg text-white ${isSuccess ? 'bg-green-500' : 'bg-red-500'}`;
+            notification.classList.remove('hidden');
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                notification.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Render applications
+        function renderApplications(docs) {
+            const tbody = document.getElementById('applicationsBody');
+            tbody.innerHTML = '';
+
+            docs.forEach(doc => {
+                const data = doc.data();
+                const row = `
+                    <tr data-id="${doc.id}" class="hover:bg-gray-50">
+                        <td class="px-6 py-4">
+                            <input value="${data.personal?.fullName || ''}" 
+                                   class="editable-field border rounded px-2 py-1 w-32">
+                        </td>
+                        <td class="px-6 py-4">
+                            <input value="${data.personal?.email || ''}" 
+                                   class="editable-field border rounded px-2 py-1 w-48">
+                        </td>
+                        <td class="px-6 py-4">
+                            <input value="${data.personal?.phone || ''}" 
+                                   class="editable-field border rounded px-2 py-1 w-32">
+                        </td>
+                        <td class="px-6 py-4">
+                            <select class="editable-field border rounded px-2 py-1 w-24">
+                                <option ${data.education?.level === 'ug' ? 'selected' : ''}>ug</option>
+                                <option ${data.education?.level === 'pg' ? 'selected' : ''}>pg</option>
+                                <option ${data.education?.level === 'phd' ? 'selected' : ''}>phd</option>
+                                <option ${data.education?.level === 'professional' ? 'selected' : ''}>professional</option>
+                            </select>
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="number" step="0.1" value="${data.education?.previousPercentage || 0}" 
+                                   class="editable-field border rounded px-2 py-1 w-24">
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="number" value="${data.family?.annualIncome || 0}" 
+                                   class="editable-field border rounded px-2 py-1 w-32">
+                        </td>
+                        <td class="px-6 py-4">
+                            <select class="editable-field border rounded px-2 py-1 w-24">
+                                <option ${data.family?.category === 'general' ? 'selected' : ''}>general</option>
+                                <option ${data.family?.category === 'obc' ? 'selected' : ''}>obc</option>
+                                <option ${data.family?.category === 'sc' ? 'selected' : ''}>sc</option>
+                                <option ${data.family?.category === 'st' ? 'selected' : ''}>st</option>
+                            </select>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 rounded-full text-sm 
+                                ${data.meta?.isEligible ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${data.meta?.isEligible ? 'Eligible' : 'Not Eligible'}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Real-time listener
+        db.collection('scholarshipApplications').onSnapshot(snapshot => {
+            renderApplications(snapshot.docs);
+        }, error => {
+            showNotification('Error fetching data: ' + error.message, false);
+        });
+
+        // Save handler
+        document.getElementById('saveAll').addEventListener('click', async () => {
+            const rows = document.querySelectorAll('#applicationsBody tr');
+            const batch = db.batch();
+
+            rows.forEach(row => {
+                const docId = row.dataset.id;
+                const docRef = db.collection('scholarshipApplications').doc(docId);
+                const cells = row.querySelectorAll('.editable-field');
+                
+                const updateData = {
+                    'personal.fullName': cells[0].value,
+                    'personal.email': cells[1].value,
+                    'personal.phone': cells[2].value,
+                    'education.level': cells[3].value,
+                    'education.previousPercentage': parseFloat(cells[4].value),
+                    'family.annualIncome': parseFloat(cells[5].value),
+                    'family.category': cells[6].value
+                };
+
+                batch.update(docRef, updateData);
+            });
+
+            try {
+                await batch.commit();
+                showNotification('All changes saved successfully!');
+            } catch (error) {
+                console.error('Error saving changes:', error);
+                showNotification('Error saving changes: ' + error.message, false);
+            }
+        });
+    </script>
+</body>
+</html>
