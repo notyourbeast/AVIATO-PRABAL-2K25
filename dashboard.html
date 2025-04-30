@@ -59,6 +59,14 @@
       border-color: #06b6d4;
       box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
     }
+    #dashboardProfilePhoto {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #dashboardProfilePhoto:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(159, 122, 234, 0.5);
+    }
   </style>
 </head>
 <body class="dark bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100 min-h-screen overflow-x-hidden">
@@ -71,13 +79,21 @@
 
 <!-- Header -->
 <div class="bg-gray-800 rounded-lg p-4 mb-5 flex justify-between items-center shadow-md border border-gray-700">
-    <h1 class="text-xl font-semibold">Rural Lady Empowerment Dashboard</h1>
-    <div class="flex items-center space-x-2">
-        <div class="w-12 h-12 rounded-full overflow-hidden">
-            <img id="dashboardProfilePhoto" src="default-avatar.png" alt="Profile" class="w-full h-full object-cover">
-        </div>
-        <span id="dashboardProfileName" class="text-sm">Jake</span>
-    </div>
+  <h1 class="text-xl font-semibold">Rural Lady Empowerment Dashboard</h1>
+  <div class="flex items-center space-x-2">
+      <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-purple-400">
+          <!-- Updated profile image with fallback -->
+          <img id="dashboardProfilePhoto" 
+               src="default-avatar.png" 
+               alt="Profile"
+               class="w-full h-full object-cover"
+               onerror="this.src='default-avatar.png'">
+      </div>
+      <span id="dashboardProfileName" class="text-sm font-medium">
+          <!-- Default name will be replaced by JavaScript -->
+          Guest
+      </span>
+  </div>
 </div>
 
   <!-- Navigation -->
@@ -376,6 +392,22 @@
   </section>
 
   <script>
+    // Load profile data on dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+        // Load profile photo
+        const savedPhoto = localStorage.getItem('profilePhoto');
+        const dashboardPhoto = document.getElementById('dashboardProfilePhoto');
+        if (savedPhoto) {
+            dashboardPhoto.src = savedPhoto;
+        }
+
+        // Load profile name
+        const savedName = localStorage.getItem('profileName');
+        const profileNameElement = document.getElementById('dashboardProfileName');
+        if (savedName) {
+            profileNameElement.textContent = savedName;
+        }
+    });
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {

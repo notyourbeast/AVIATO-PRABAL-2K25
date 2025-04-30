@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Rural Lady Empowerment Dashboard</title>
-        <link rel="stylesheet" href="/css/style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rural Lady Empowerment Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@600&display=swap" rel="stylesheet">
     <style>
         @keyframes slideIn {
             from { transform: translateX(-100%); }
@@ -18,11 +18,11 @@
         }
 
         .sidebar-mobile {
-            animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation: slideIn 0.3s ease-out forwards;
         }
         
         .sidebar-mobile-closed {
-            animation: slideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation: slideOut 0.3s ease-in forwards;
         }
 
         .glow {
@@ -33,26 +33,25 @@
             box-shadow: 0 0 25px rgba(167, 139, 250, 0.7);
         }
 
-        .sidebar {
-            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+        #contentFrame {
+            transition: width 0.3s ease, opacity 0.3s ease;
         }
     </style>
+</head>
+<body class="bg-slate-900">
+    <!-- Mobile Menu Button -->
+    <button id="mobileMenuButton" class="md:hidden fixed top-4 left-4 z-50 p-3 bg-purple-600 rounded-full text-white shadow-lg hover:bg-purple-700 transition-all">
+        ☰
+    </button>
 
-    </head>
-    <body class="bg-slate-900">
-        <!-- Mobile Menu Button -->
-        <button id="mobileMenuButton" class="md:hidden fixed top-4 left-4 z-50 p-3 bg-purple-600 rounded-lg text-white shadow-lg hover:bg-purple-700 transition-colors">
-            ☰
-        </button>
-    
-        <!-- Sidebar -->
-        <div id="sidebar" class="fixed h-screen w-64 -translate-x-full md:translate-x-0 bg-gradient-to-b from-slate-900 to-slate-800 border-r border-slate-800 flex flex-col z-40 transition-transform duration-300">
-            <div class="sidebar-logo p-6">
-                <div class="logo-text text-4xl font-semibold px-4 py-2 border-4 rounded-xl border-pink-600 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-lg tracking-wider glow hover:glow-lg transition-all duration-300 transform hover:-translate-y-1" 
-                     style="font-family: 'Playfair Display', serif; text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);">
-                    Empower<span class="text-yellow-300" style="font-family: 'Poppins', sans-serif;">Her</span>
-                </div>
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed h-screen w-64 -translate-x-full md:translate-x-0 bg-gradient-to-b from-slate-900 to-slate-800 border-r border-slate-700 flex flex-col z-40 transition-transform duration-300">
+        <div class="sidebar-logo p-6">
+            <div class="logo-text text-2xl font-semibold px-4 py-2 border-4 rounded-xl border-pink-600 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-lg tracking-wider glow hover:glow-lg transition-all duration-300 transform hover:-translate-y-1" 
+                 style="font-family: 'Playfair Display', serif; text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);">
+                Empower<span class="text-yellow-300" style="font-family: 'Poppins', sans-serif;">Her</span>
             </div>
+        </div>
             
             <ul class="sidebar-menu flex-1 px-4 py-6 space-y-2 overflow-y-auto">
                 <li>
@@ -108,111 +107,110 @@
         
         
 
-<div class="sidebar-footer p-6">
-    <button onclick="logout()" 
-            class="btn-secondary w-full text-center px-6 py-3 rounded-full font-medium transition-all hover:bg-purple-900 hover:bg-opacity-30 hover:border-purple-500 hover:text-white border border-purple-800">
-        Logout
-    </button>
-</div>
-</div>
-
-<!-- Main Content -->
-<div class="main-content md:ml-64 h-screen relative">
-<!-- Loading Indicator -->
-<div id="loading" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-30 hidden">
-    <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-purple-600"></div>
-</div>
-
-<!-- Content Frame -->
-<iframe id="contentFrame" src="dashboard.html" 
-        class="w-full h-full transition-opacity duration-300"></iframe>
-</div>
-
+            <div class="sidebar-footer p-6">
+                <button onclick="logout()" class="btn-secondary w-full text-center px-6 py-3 rounded-full font-medium transition-all bg-purple-800 hover:bg-purple-700 text-white">
+                    Logout
+                </button>
+            </div>
+        </div>
+    
+        <!-- Main Content -->
+        <div id="mainContent" class="h-screen md:ml-64 transition-margin duration-300">
+            <!-- Loading Indicator -->
+            <div id="loading" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-30 hidden">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-purple-600"></div>
+            </div>
+    
+            <!-- Fullscreen Iframe -->
+            <iframe id="contentFrame" src="dashboard.html" 
+                    class="w-full h-full absolute md:relative"></iframe>
+        </div>
+    
         <script>
-            let sidebarVisible = false;
+            let sidebarVisible = true; // Start with sidebar visible on desktop
             const sidebar = document.getElementById('sidebar');
             const mobileMenuButton = document.getElementById('mobileMenuButton');
             const contentFrame = document.getElementById('contentFrame');
-            const loading = document.getElementById('loading');
-    
+            const mainContent = document.getElementById('mainContent');
+        
             function toggleSidebar() {
                 sidebarVisible = !sidebarVisible;
-                sidebar.classList.toggle('-translate-x-full');
-                sidebar.classList.toggle('sidebar-mobile');
                 
-                // Add overlay when sidebar is open on mobile
-                if (sidebarVisible) {
-                    document.body.classList.add('overflow-hidden');
+                if (window.innerWidth >= 768) {
+                    // Desktop behavior
+                    if (sidebarVisible) {
+                        mainContent.classList.remove('ml-0');
+                        mainContent.classList.add('md:ml-64');
+                        contentFrame.style.width = '100%'; // Takes 100% of remaining space
+                    } else {
+                        mainContent.classList.remove('md:ml-64');
+                        mainContent.classList.add('ml-0');
+                        contentFrame.style.width = '100%'; // Full width when sidebar hidden
+                    }
                 } else {
-                    document.body.classList.remove('overflow-hidden');
+                    // Mobile behavior
+                    sidebar.classList.toggle('-translate-x-full');
+                    contentFrame.style.width = '100%'; // Always full width on mobile
                 }
             }
-    
-            // Mobile menu toggle
+        
+            // Mobile menu button click
             mobileMenuButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 toggleSidebar();
             });
-    
+        
             // Close sidebar when clicking outside on mobile
             document.addEventListener('click', (e) => {
-                if (sidebarVisible && !sidebar.contains(e.target)) {
+                if (sidebarVisible && !sidebar.contains(e.target) && window.innerWidth < 768) {
                     toggleSidebar();
                 }
             });
-    
+        
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    // Desktop view
+                    sidebar.classList.remove('-translate-x-full');
+                    mainContent.classList.add('md:ml-64');
+                    contentFrame.style.width = '100%'; // Fill remaining space
+                    sidebarVisible = true;
+                } else {
+                    // Mobile view
+                    sidebar.classList.add('-translate-x-full');
+                    mainContent.classList.remove('md:ml-64');
+                    contentFrame.style.width = '100%'; // Full width
+                    sidebarVisible = false;
+                }
+            });
+        
+            // Initial setup
+            if (window.innerWidth >= 768) {
+                contentFrame.style.width = '100%'; // Start with 100% of remaining space
+            } else {
+                contentFrame.style.width = '100%'; // Mobile full width
+            }
+        
             function loadPage(pageUrl) {
+                const loading = document.getElementById('loading');
                 loading.classList.remove('hidden');
                 contentFrame.style.opacity = '0';
-    
-                contentFrame.src = pageUrl;
-                
-                contentFrame.onload = () => {
-                    loading.classList.add('hidden');
+        
+                setTimeout(() => {
+                    contentFrame.src = pageUrl;
                     contentFrame.style.opacity = '1';
-                    
-                    // Close sidebar on mobile after navigation
+                    loading.classList.add('hidden');
+        
                     if (window.innerWidth < 768) {
                         toggleSidebar();
                     }
-                };
+                }, 300);
             }
-    
+        
             function logout() {
                 localStorage.clear();
                 window.location.href = "index.html";
             }
-    
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                if (window.innerWidth >= 768) {
-                    sidebar.classList.remove('-translate-x-full');
-                } else if (!sidebarVisible) {
-                    sidebar.classList.add('-translate-x-full');
-                }
-            });
-    
-            // Initialize profile data
-            document.addEventListener('DOMContentLoaded', () => {
-                const profileName = localStorage.getItem("userName") || "Guest";
-                const profilePhoto = localStorage.getItem("profilePhoto") || "default-avatar.png";
-                
-                // Update profile elements if they exist in the iframe
-                const updateProfile = () => {
-                    const iframeDoc = contentFrame.contentDocument || contentFrame.contentWindow.document;
-                    const profileNameEl = iframeDoc.getElementById('dashboardProfileName');
-                    const profilePhotoEl = iframeDoc.getElementById('dashboardProfilePhoto');
-                    
-                    if (profileNameEl) profileNameEl.textContent = profileName;
-                    if (profilePhotoEl) profilePhotoEl.src = profilePhoto;
-                };
-    
-                contentFrame.onload = () => {
-                    setTimeout(updateProfile, 100);
-                    loading.classList.add('hidden');
-                    contentFrame.style.opacity = '1';
-                };
-            });
         </script>
     </body>
 </html>
